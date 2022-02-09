@@ -14,6 +14,10 @@ const StyledSubMenuItems = styled(Flex)<{ $isMobileOnly: boolean }>`
   &::-webkit-scrollbar {
     display: none;
   }
+  margin-top: 150px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  height: 50px;
 `;
 
 export default StyledSubMenuItems;

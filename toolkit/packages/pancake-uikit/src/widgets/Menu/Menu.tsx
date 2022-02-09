@@ -63,6 +63,10 @@ const Inner = styled.div<{ isPushed: boolean; showMenu: boolean }>`
   transition: margin-top 0.2s, margin-left 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   transform: translate3d(0, 0, 0);
   max-width: 100%;
+  background: #171717;
+  margin-bottom: 50px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 `;
 
 const Menu: React.FC<NavProps> = ({
@@ -158,36 +162,42 @@ const Menu: React.FC<NavProps> = ({
         </Box>
       </FixedContainer>
 
-      {subLinks && (
-        <Flex justifyContent="space-around">
-          <SubMenuItems items={subLinksWithoutMobile} mt={`${totalTopMenuHeight + 1}px`} activeItem={activeSubItem} />
+      {subLinks ?
+        (
+          <Box maxWidth="1200px" mx="auto">
+            <SubMenuItems items={subLinksWithoutMobile} mt={`${totalTopMenuHeight + 1}px`} activeItem={activeSubItem} />
 
-          {subLinksMobileOnly?.length > 0 && (
-            <SubMenuItems
-              items={subLinksMobileOnly}
-              mt={`${totalTopMenuHeight + 1}px`}
-              activeItem={activeSubItem}
-              isMobileOnly
+            {subLinksMobileOnly?.length > 0 && (
+              <SubMenuItems
+                items={subLinksMobileOnly}
+                mt={`${totalTopMenuHeight + 1}px`}
+                activeItem={activeSubItem}
+                isMobileOnly
+              />
+            )}
+            <BodyWrapper mt={!subLinks ? `${totalTopMenuHeight + 1}px` : "0"}>
+              <Inner isPushed={false} showMenu={showMenu}>
+                {children}
+              </Inner>
+            </BodyWrapper>
+          </Box>
+        ) :
+        (<BodyWrapper mt={!subLinks ? `${totalTopMenuHeight + 1}px` : "0"}>
+          <Inner isPushed={false} showMenu={showMenu}>
+            {children}
+          </Inner>
+        </BodyWrapper>)}
+        <Footer
+              items={footerLinks}
+              isDark={isDark}
+              toggleTheme={toggleTheme}
+              langs={langs}
+              setLang={setLang}
+              currentLang={currentLang}
+              cakePriceUsd={cakePriceUsd}
+              buyCakeLabel={buyCakeLabel}
+              mb={[`${MOBILE_MENU_HEIGHT}px`, null, "0px"]}
             />
-          )}
-        </Flex>
-      )}
-      <BodyWrapper mt={!subLinks ? `${totalTopMenuHeight + 1}px` : "0"}>
-        <Inner isPushed={false} showMenu={showMenu}>
-          {children}
-          <Footer
-            items={footerLinks}
-            isDark={isDark}
-            toggleTheme={toggleTheme}
-            langs={langs}
-            setLang={setLang}
-            currentLang={currentLang}
-            cakePriceUsd={cakePriceUsd}
-            buyCakeLabel={buyCakeLabel}
-            mb={[`${MOBILE_MENU_HEIGHT}px`, null, "0px"]}
-          />
-        </Inner>
-      </BodyWrapper>
       {isMobile && <BottomNav items={links} activeItem={activeItem} activeSubItem={activeSubItem} />}
     </Wrapper>
   );

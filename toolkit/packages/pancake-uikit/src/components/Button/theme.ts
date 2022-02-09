@@ -2,15 +2,15 @@ import { scales, variants } from "./types";
 
 export const scaleVariants = {
   [scales.MD]: {
-    height: "48px",
+    height: "57px",
     padding: "0 24px",
   },
   [scales.SM]: {
-    height: "32px",
+    height: "41px",
     padding: "0 16px",
   },
   [scales.XS]: {
-    height: "20px",
+    height: "25px",
     fontSize: "12px",
     padding: "0 8px",
   },

@@ -8,15 +8,15 @@ export const StyledMenuItemContainer = styled.div<StyledMenuItemProps>`
     $isActive &&
     $variant === "subMenu" &&
     `
-      &:after{
-        content: "";
-        position: absolute;
-        bottom: 0;
-        height: 4px;
-        width: 100%;
-        background-color: ${theme.colors.primary};
-        border-radius: 2px 2px 0 0;
-      }
+      // &:after{
+      //   content: "";
+      //   position: absolute;
+      //   bottom: 0;
+      //   height: 4px;
+      //   width: 100%;
+      //   background-color: ${theme.colors.primary};
+      //   border-radius: 2px 2px 0 0;
+      // }
     `};
 `;
 
@@ -54,7 +54,7 @@ const StyledMenuItem = styled.a<StyledMenuItemProps>`
   `}
 
   &:hover {
-    background: ${({ theme }) => theme.colors.tertiary};
+    // background: ${({ theme }) => theme.colors.tertiary};
     ${({ $variant }) => $variant === "default" && "border-radius: 16px;"};
   }
 `;

@@ -12,6 +12,9 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Kanit', sans-serif;
   }
   body {
+    background: url(/assets/svgs/PageSVG.svg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     background-color: ${({ theme }) => theme.colors.background};
 
     img {
