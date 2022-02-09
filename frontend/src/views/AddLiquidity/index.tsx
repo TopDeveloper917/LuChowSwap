@@ -9,6 +9,7 @@ import { useTranslation } from 'contexts/Localization'
 import UnsupportedCurrencyFooter from 'components/UnsupportedCurrencyFooter'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useDispatch } from 'react-redux'
+import styled from 'styled-components'
 import { AppDispatch } from '../../state'
 import { LightCard } from '../../components/Card'
 import { AutoColumn, ColumnCenter } from '../../components/Layout/Column'
@@ -38,6 +39,10 @@ import ConfirmAddModalBottom from './ConfirmAddModalBottom'
 import { currencyId } from '../../utils/currencyId'
 import PoolPriceBar from './PoolPriceBar'
 import Page from '../Page'
+
+const Body = styled(CardBody)`
+  background-color: ${({ theme }) => theme.colors.dropdownDeep};
+`
 
 export default function AddLiquidity({
   match: {
@@ -326,7 +331,7 @@ export default function AddLiquidity({
           )}
           backTo="/pool"
         />
-        <CardBody>
+        <Body>
           <AutoColumn gap="20px">
             {noLiquidity && (
               <ColumnCenter>
@@ -370,13 +375,13 @@ export default function AddLiquidity({
             />
             {currencies[Field.CURRENCY_A] && currencies[Field.CURRENCY_B] && pairState !== PairState.INVALID && (
               <>
-                <LightCard padding="0px" borderRadius="20px">
+                <LightCard padding="0px" borderRadius="20px" style={{backgroundColor: '#E24717', borderColor: '#E24717'}}>
                   <RowBetween padding="1rem">
                     <Text fontSize="14px">
                       {noLiquidity ? t('Initial prices and pool share') : t('Prices and pool share')}
                     </Text>
                   </RowBetween>{' '}
-                  <LightCard padding="1rem" borderRadius="20px">
+                  <LightCard padding="1rem" borderRadius="0 0 20px 20px">
                     <PoolPriceBar
                       currencies={currencies}
                       poolTokenPercentage={poolTokenPercentage}
@@ -450,7 +455,7 @@ export default function AddLiquidity({
               </AutoColumn>
             )}
           </AutoColumn>
-        </CardBody>
+        </Body>
       </AppBody>
       {!addIsUnsupported ? (
         pair && !noLiquidity && pairState !== PairState.INVALID ? (

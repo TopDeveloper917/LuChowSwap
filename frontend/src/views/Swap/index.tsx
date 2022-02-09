@@ -67,6 +67,9 @@ const Label = styled(Text)`
   font-weight: bold;
   color: ${({ theme }) => theme.colors.secondary};
 `
+const SwapWraper = styled(Wrapper)`
+  background-color: ${({ theme }) => theme.colors.dropdownDeep};
+`
 
 export default function Swap({ history }: RouteComponentProps) {
   const loadedUrlParams = useDefaultsFromURLSearch()
@@ -377,7 +380,7 @@ export default function Swap({ history }: RouteComponentProps) {
                   setIsChartDisplayed={setIsChartDisplayed}
                   isChartDisplayed={isChartDisplayed}
                 />
-                <Wrapper id="swap-page">
+                <SwapWraper id="swap-page">
                   <AutoColumn gap="md">
                     <CurrencyInputPanel
                       label={
@@ -395,7 +398,7 @@ export default function Swap({ history }: RouteComponentProps) {
 
                     <AutoColumn justify="space-between">
                       <AutoRow justify={isExpertMode ? 'space-between' : 'center'} style={{ padding: '0 1rem' }}>
-                        <IconButton variant="light" scale="sm">
+                        <IconButton variant="light" scale="sm" style={{backgroundColor: 'rgb(55 47 71)', width: 40, height: 40}}>
                           <ArrowDownIcon
                             width="16px"
                             onClick={() => {
@@ -566,7 +569,7 @@ export default function Swap({ history }: RouteComponentProps) {
                     )}
                     {isExpertMode && swapErrorMessage ? <SwapCallbackError error={swapErrorMessage} /> : null}
                   </Box>
-                </Wrapper>
+                </SwapWraper>
               </AppBody>
               {!swapIsUnsupported ? (
                 trade && <AdvancedSwapDetailsDropdown trade={trade} />

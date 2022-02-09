@@ -18,9 +18,9 @@ interface Props {
 const AppHeaderContainer = styled(Flex)`
   align-items: center;
   justify-content: space-between;
-  padding: 24px;
+  padding: 24px 24px 36px 24px;
   width: 100%;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.cardBorder};
+  background: linear-gradient(to bottom,#a03313 25%,#6c2d19 50%,#7a2308e0 75%,#222222 100%);
 `
 
 const AppHeader: React.FC<Props> = ({ title, subtitle, helper, backTo, noConfig = false }) => {

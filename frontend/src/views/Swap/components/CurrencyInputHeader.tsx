@@ -16,8 +16,9 @@ interface Props {
 const CurrencyInputContainer = styled(Flex)`
   align-items: center;
   padding: 24px;
+  padding: 24px 24px 36px 24px;
   width: 100%;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.cardBorder};
+  background: linear-gradient(to bottom,#a03313 25%,#6c2d19 50%,#7a2308e0 75%,#222222 100%);
 `
 
 const CurrencyInputHeader: React.FC<Props> = ({ title, subtitle, setIsChartDisplayed }) => {
@@ -32,7 +33,7 @@ const CurrencyInputHeader: React.FC<Props> = ({ title, subtitle, setIsChartDispl
       <Flex width="100%" alignItems="flex-start" justifyContent="space-between">
         {setIsChartDisplayed && (
           <IconButton onClick={toggleChartDisplayed} variant="text" scale="sm">
-            <ChartIcon width="24px" color="primary" />
+            <ChartIcon width="24px"/>
           </IconButton>
         )}
         <Flex flexDirection="column" alignItems="center">
@@ -47,10 +48,10 @@ const CurrencyInputHeader: React.FC<Props> = ({ title, subtitle, setIsChartDispl
         </Flex>
         <Flex>
           <NotificationDot show={expertMode}>
-            <GlobalSettings color="primary" mr="0" />
+            <GlobalSettings mr="0" />
           </NotificationDot>
           <IconButton onClick={onPresentTransactionsModal} variant="text" scale="sm">
-            <HistoryIcon color="primary" width="24px" />
+            <HistoryIcon width="24px" />
           </IconButton>
         </Flex>
       </Flex>
