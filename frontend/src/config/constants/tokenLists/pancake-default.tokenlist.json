@@ -56,7 +56,7 @@
       "address": "0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82",
       "chainId": 56,
       "decimals": 18,
-      "logoURI": "https://pancakeswap.finance/images/tokens/0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82.png"
+      "logoURI": "https://pancakeswap.finance/images/tokens/0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82.png"
     },
     {
       "name": "Venus",
@@ -129,6 +129,14 @@
       "chainId": 56,
       "decimals": 18,
       "logoURI": "https://pancakeswap.finance/images/tokens/0xa7f552078dcc247c2684336020c03648500c6d9f.png"
+    },
+    {
+      "name": "LUCHOW",
+      "symbol": "LUCHOW",
+      "address": "0xe4e8e6878718bfe533702D4a6571Eb74D79b0915",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://app.luchowswap.com/assets/images/logo.png"
     }
   ]
 }

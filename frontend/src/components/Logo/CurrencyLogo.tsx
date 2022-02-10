@@ -30,6 +30,9 @@ export default function CurrencyLogo({
       if (currency instanceof WrappedTokenInfo) {
         return [...uriLocations, getTokenLogoURL(currency.address)]
       }
+      if (currency.address.toLowerCase() === "0xe4e8e6878718bfe533702D4a6571Eb74D79b0915".toLowerCase()) {
+        return ["https://app.luchowswap.com/assets/images/logo.png"]
+      }
       return [getTokenLogoURL(currency.address)]
     }
     return []

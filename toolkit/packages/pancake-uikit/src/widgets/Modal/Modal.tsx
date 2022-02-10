@@ -12,7 +12,7 @@ const Modal: React.FC<ModalProps> = ({
   children,
   hideCloseButton = false,
   bodyPadding = "24px",
-  headerBackground = "transparent",
+  headerBackground = "linear-gradient(to bottom,#a03313 25%,#6c2d19 50%,#7a2308e0 75%,#222222 100%)",
   minWidth = "320px",
   ...props
 }) => {
