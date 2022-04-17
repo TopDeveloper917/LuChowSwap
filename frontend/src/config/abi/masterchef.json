@@ -2,28 +2,28 @@
   {
     "inputs": [
       {
-        "internalType": "contract CakeToken",
-        "name": "_cake",
+        "internalType": "contract IBEP20",
+        "name": "_reTk",
         "type": "address"
       },
       {
-        "internalType": "contract SyrupBar",
-        "name": "_syrup",
+        "internalType": "contract ReTkController",
+        "name": "_reTkController",
         "type": "address"
       },
       {
         "internalType": "address",
-        "name": "_devaddr",
+        "name": "_feeAddress",
         "type": "address"
       },
       {
         "internalType": "uint256",
-        "name": "_cakePerBlock",
+        "name": "_startBlock",
         "type": "uint256"
       },
       {
         "internalType": "uint256",
-        "name": "_startBlock",
+        "name": "_reTkPerBlock",
         "type": "uint256"
       }
     ],
@@ -52,7 +52,7 @@
         "type": "uint256"
       }
     ],
-    "name": "Deposit",
+    "name": "Deposited",
     "type": "event"
   },
   {
@@ -77,7 +77,51 @@
         "type": "uint256"
       }
     ],
-    "name": "EmergencyWithdraw",
+    "name": "EmergencyWithdrawn",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "caller",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "oldValue",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "newValue",
+        "type": "uint256"
+      }
+    ],
+    "name": "EmissionRateUpdated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "oldFeeAddress",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "newFeeAddress",
+        "type": "address"
+      }
+    ],
+    "name": "FeeAddressUpdated",
     "type": "event"
   },
   {
@@ -117,11 +161,55 @@
       {
         "indexed": false,
         "internalType": "uint256",
+        "name": "amountLockedUp",
+        "type": "uint256"
+      }
+    ],
+    "name": "RewardLockedUp",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "oldBlock",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "newBlock",
+        "type": "uint256"
+      }
+    ],
+    "name": "StartBlockUpdated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "pid",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
         "name": "amount",
         "type": "uint256"
       }
     ],
-    "name": "Withdraw",
+    "name": "Withdrawn",
     "type": "event"
   },
   {
@@ -132,6 +220,58 @@
         "internalType": "uint256",
         "name": "",
         "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "MAXIMUM_DEPOSIT_FEE",
+    "outputs": [
+      {
+        "internalType": "uint16",
+        "name": "",
+        "type": "uint16"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "MAXIMUM_EMISSON_RATE",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "MAXIMUM_HARVEST_INTERVAL",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "MAXIMUM_WITHDRAW_FEE",
+    "outputs": [
+      {
+        "internalType": "uint16",
+        "name": "",
+        "type": "uint16"
       }
     ],
     "stateMutability": "view",
@@ -150,6 +290,26 @@
         "type": "address"
       },
       {
+        "internalType": "uint16",
+        "name": "_depositFeeBP",
+        "type": "uint16"
+      },
+      {
+        "internalType": "uint16",
+        "name": "_withdrawFeeBP",
+        "type": "uint16"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_harvestInterval",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_lockPeriod",
+        "type": "uint256"
+      },
+      {
         "internalType": "bool",
         "name": "_withUpdate",
         "type": "bool"
@@ -161,26 +321,48 @@
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "cake",
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_pid",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "_user",
+        "type": "address"
+      }
+    ],
+    "name": "canHarvest",
     "outputs": [
       {
-        "internalType": "contract CakeToken",
+        "internalType": "bool",
         "name": "",
-        "type": "address"
+        "type": "bool"
       }
     ],
     "stateMutability": "view",
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "cakePerBlock",
-    "outputs": [
+    "inputs": [
       {
         "internalType": "uint256",
-        "name": "",
+        "name": "_pid",
         "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "_user",
+        "type": "address"
+      }
+    ],
+    "name": "canWithdraw",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
       }
     ],
     "stateMutability": "view",
@@ -207,32 +389,6 @@
   {
     "inputs": [
       {
-        "internalType": "address",
-        "name": "_devaddr",
-        "type": "address"
-      }
-    ],
-    "name": "dev",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "devaddr",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
         "internalType": "uint256",
         "name": "_pid",
         "type": "uint256"
@@ -244,28 +400,28 @@
     "type": "function"
   },
   {
-    "inputs": [
+    "inputs": [],
+    "name": "feeAddress",
+    "outputs": [
       {
-        "internalType": "uint256",
-        "name": "_amount",
-        "type": "uint256"
+        "internalType": "address",
+        "name": "",
+        "type": "address"
       }
     ],
-    "name": "enterStaking",
-    "outputs": [],
-    "stateMutability": "nonpayable",
+    "stateMutability": "view",
     "type": "function"
   },
   {
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "_from",
+        "name": "_fromBlock",
         "type": "uint256"
       },
       {
         "internalType": "uint256",
-        "name": "_to",
+        "name": "_toBlock",
         "type": "uint256"
       }
     ],
@@ -277,20 +433,7 @@
         "type": "uint256"
       }
     ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "_amount",
-        "type": "uint256"
-      }
-    ],
-    "name": "leaveStaking",
-    "outputs": [],
-    "stateMutability": "nonpayable",
+    "stateMutability": "pure",
     "type": "function"
   },
   {
@@ -298,32 +441,6 @@
     "name": "massUpdatePools",
     "outputs": [],
     "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "_pid",
-        "type": "uint256"
-      }
-    ],
-    "name": "migrate",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "migrator",
-    "outputs": [
-      {
-        "internalType": "contract IMigratorChef",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -352,12 +469,31 @@
         "type": "address"
       }
     ],
-    "name": "pendingCake",
+    "name": "pendingReTk",
     "outputs": [
       {
         "internalType": "uint256",
         "name": "",
         "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "contract IBEP20",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "poolExistence",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
       }
     ],
     "stateMutability": "view",
@@ -380,6 +516,11 @@
       },
       {
         "internalType": "uint256",
+        "name": "lpSupply",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
         "name": "allocPoint",
         "type": "uint256"
       },
@@ -390,7 +531,27 @@
       },
       {
         "internalType": "uint256",
-        "name": "accCakePerShare",
+        "name": "accReTkPerShare",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint16",
+        "name": "depositFeeBP",
+        "type": "uint16"
+      },
+      {
+        "internalType": "uint256",
+        "name": "harvestInterval",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "withdrawFeeBP",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "lockPeriod",
         "type": "uint256"
       }
     ],
@@ -400,6 +561,45 @@
   {
     "inputs": [],
     "name": "poolLength",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "reTk",
+    "outputs": [
+      {
+        "internalType": "contract IBEP20",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "reTkController",
+    "outputs": [
+      {
+        "internalType": "contract ReTkController",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "reTkPerBlock",
     "outputs": [
       {
         "internalType": "uint256",
@@ -430,6 +630,26 @@
         "type": "uint256"
       },
       {
+        "internalType": "uint16",
+        "name": "_depositFeeBP",
+        "type": "uint16"
+      },
+      {
+        "internalType": "uint16",
+        "name": "_withdrawFeeBP",
+        "type": "uint16"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_harvestInterval",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_lockPeriod",
+        "type": "uint256"
+      },
+      {
         "internalType": "bool",
         "name": "_withUpdate",
         "type": "bool"
@@ -443,12 +663,12 @@
   {
     "inputs": [
       {
-        "internalType": "contract IMigratorChef",
-        "name": "_migrator",
+        "internalType": "address",
+        "name": "_feeAddress",
         "type": "address"
       }
     ],
-    "name": "setMigrator",
+    "name": "setFeeAddress",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -468,12 +688,12 @@
   },
   {
     "inputs": [],
-    "name": "syrup",
+    "name": "totalAllocPoint",
     "outputs": [
       {
-        "internalType": "contract SyrupBar",
+        "internalType": "uint256",
         "name": "",
-        "type": "address"
+        "type": "uint256"
       }
     ],
     "stateMutability": "view",
@@ -481,7 +701,7 @@
   },
   {
     "inputs": [],
-    "name": "totalAllocPoint",
+    "name": "totalLockedUpRewards",
     "outputs": [
       {
         "internalType": "uint256",
@@ -509,11 +729,11 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "multiplierNumber",
+        "name": "_reTkPerBlock",
         "type": "uint256"
       }
     ],
-    "name": "updateMultiplier",
+    "name": "updateEmissionRate",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -527,6 +747,19 @@
       }
     ],
     "name": "updatePool",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_startBlock",
+        "type": "uint256"
+      }
+    ],
+    "name": "updateStartBlock",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -554,6 +787,21 @@
       {
         "internalType": "uint256",
         "name": "rewardDebt",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "rewardLockedUp",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "nextHarvestUntil",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "lastDepositedAt",
         "type": "uint256"
       }
     ],

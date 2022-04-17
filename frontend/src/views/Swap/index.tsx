@@ -131,13 +131,13 @@ export default function Swap({ history }: RouteComponentProps) {
 
   const parsedAmounts = showWrap
     ? {
-        [Field.INPUT]: parsedAmount,
-        [Field.OUTPUT]: parsedAmount,
-      }
+      [Field.INPUT]: parsedAmount,
+      [Field.OUTPUT]: parsedAmount,
+    }
     : {
-        [Field.INPUT]: independentField === Field.INPUT ? parsedAmount : trade?.inputAmount,
-        [Field.OUTPUT]: independentField === Field.OUTPUT ? parsedAmount : trade?.outputAmount,
-      }
+      [Field.INPUT]: independentField === Field.INPUT ? parsedAmount : trade?.inputAmount,
+      [Field.OUTPUT]: independentField === Field.OUTPUT ? parsedAmount : trade?.outputAmount,
+    }
 
   const { onSwitchTokens, onCurrencySelection, onUserInput, onChangeRecipient } = useSwapActionHandlers()
   const isValid = !swapInputError
@@ -340,8 +340,8 @@ export default function Swap({ history }: RouteComponentProps) {
 
   return (
     <Page removePadding={isChartExpanded} hideFooterOnDesktop={isChartExpanded}>
-      <Flex width="100%" justifyContent="center" position="relative">
-        {!isMobile && (
+      <Flex width="100%" justifyContent={isChartExpanded ? "unset" : "center"} position="relative">
+        {!isMobile && false && (
           <PriceChartContainer
             inputCurrencyId={inputCurrencyId}
             inputCurrency={currencies[Field.INPUT]}
@@ -364,7 +364,7 @@ export default function Swap({ history }: RouteComponentProps) {
               setIsChartExpanded={setIsChartExpanded}
               isChartDisplayed={isChartDisplayed}
               currentSwapPrice={singleTokenPrice}
-              isMobile
+              isMobile={false}
             />
           }
           isOpen={isChartDisplayed}
@@ -398,13 +398,14 @@ export default function Swap({ history }: RouteComponentProps) {
 
                     <AutoColumn justify="space-between">
                       <AutoRow justify={isExpertMode ? 'space-between' : 'center'} style={{ padding: '0 1rem' }}>
-                        <IconButton variant="light" scale="sm" style={{backgroundColor: 'rgb(55 47 71)', width: 40, height: 40}}>
+                        <IconButton variant="light" scale="sm"
+                          onClick={() => {
+                            setApprovalSubmitted(false) // reset 2 step UI for approvals
+                            onSwitchTokens()
+                          }}
+                          style={{ backgroundColor: 'rgb(55 47 71)', width: 40, height: 40 }}>
                           <ArrowDownIcon
                             width="16px"
-                            onClick={() => {
-                              setApprovalSubmitted(false) // reset 2 step UI for approvals
-                              onSwitchTokens()
-                            }}
                             color={currencies[Field.INPUT] && currencies[Field.OUTPUT] ? 'primary' : 'text'}
                           />
                         </IconButton>
@@ -415,6 +416,7 @@ export default function Swap({ history }: RouteComponentProps) {
                         ) : null}
                       </AutoRow>
                     </AutoColumn>
+
                     <CurrencyInputPanel
                       value={formattedAmounts[Field.OUTPUT]}
                       onUserInput={handleTypeOutput}
@@ -530,8 +532,8 @@ export default function Swap({ history }: RouteComponentProps) {
                           {priceImpactSeverity > 3 && !isExpertMode
                             ? t('Price Impact High')
                             : priceImpactSeverity > 2
-                            ? t('Swap Anyway')
-                            : t('Swap')}
+                              ? t('Swap Anyway')
+                              : t('Swap')}
                         </Button>
                       </RowBetween>
                     ) : (
@@ -558,8 +560,8 @@ export default function Swap({ history }: RouteComponentProps) {
                           (priceImpactSeverity > 3 && !isExpertMode
                             ? t('Price Impact Too High')
                             : priceImpactSeverity > 2
-                            ? t('Swap Anyway')
-                            : t('Swap'))}
+                              ? t('Swap Anyway')
+                              : t('Swap'))}
                       </Button>
                     )}
                     {showApproveFlow && (

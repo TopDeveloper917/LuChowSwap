@@ -42,7 +42,7 @@ const BountyModal: React.FC<BountyModalProps> = ({ onDismiss, TooltipComponent }
   const { callWithGasPrice } = useCallWithGasPrice()
   const cakePriceBusd = usePriceCakeBusd()
   const callFeeAsDecimal = callFee / 100
-  const totalYieldToDisplay = getBalanceNumber(totalPendingCakeHarvest, 18)
+  const totalYieldToDisplay = getBalanceNumber(totalPendingCakeHarvest, 9)
 
   const estimatedDollarBountyReward = useMemo(() => {
     return new BigNumber(estimatedCakeBountyReward).multipliedBy(cakePriceBusd)
@@ -50,8 +50,8 @@ const BountyModal: React.FC<BountyModalProps> = ({ onDismiss, TooltipComponent }
 
   const hasFetchedDollarBounty = estimatedDollarBountyReward.gte(0)
   const hasFetchedCakeBounty = estimatedCakeBountyReward ? estimatedCakeBountyReward.gte(0) : false
-  const dollarBountyToDisplay = hasFetchedDollarBounty ? getBalanceNumber(estimatedDollarBountyReward, 18) : 0
-  const cakeBountyToDisplay = hasFetchedCakeBounty ? getBalanceNumber(estimatedCakeBountyReward, 18) : 0
+  const dollarBountyToDisplay = hasFetchedDollarBounty ? getBalanceNumber(estimatedDollarBountyReward, 9) : 0
+  const cakeBountyToDisplay = hasFetchedCakeBounty ? getBalanceNumber(estimatedCakeBountyReward, 9) : 0
 
   const { targetRef, tooltip, tooltipVisible } = useTooltip(<TooltipComponent fee={callFee} />, {
     placement: 'bottom',
@@ -61,13 +61,14 @@ const BountyModal: React.FC<BountyModalProps> = ({ onDismiss, TooltipComponent }
   const handleConfirmClick = async () => {
     setPendingTx(true)
     try {
-      const tx = await callWithGasPrice(cakeVaultContract, 'harvest', undefined, { gasLimit: 300000 })
+      // const tx = await callWithGasPrice(cakeVaultContract, 'harvest', undefined, { gasLimit: 300000 })
+      const tx = await callWithGasPrice(cakeVaultContract, 'harvest', undefined)
       const receipt = await tx.wait()
       if (receipt.status) {
         toastSuccess(
           t('Bounty collected!'),
           <ToastDescriptionWithTx txHash={receipt.transactionHash}>
-            {t('CAKE bounty has been sent to your wallet.')}
+            {t('MLOKY bounty has been sent to your wallet.')}
           </ToastDescriptionWithTx>,
         )
         setPendingTx(false)
@@ -85,7 +86,7 @@ const BountyModal: React.FC<BountyModalProps> = ({ onDismiss, TooltipComponent }
       <Flex alignItems="flex-start" justifyContent="space-between">
         <Text>{t('You’ll claim')}</Text>
         <Flex flexDirection="column">
-          <Balance bold value={cakeBountyToDisplay} decimals={7} unit=" CAKE" />
+          <Balance bold value={cakeBountyToDisplay} decimals={7} unit=" MLOKY" />
           <Text fontSize="12px" color="textSubtle">
             <Balance
               fontSize="12px"
@@ -103,7 +104,7 @@ const BountyModal: React.FC<BountyModalProps> = ({ onDismiss, TooltipComponent }
         <Text fontSize="14px" color="textSubtle">
           {t('Pool total pending yield')}
         </Text>
-        <Balance color="textSubtle" value={totalYieldToDisplay} unit=" CAKE" />
+        <Balance color="textSubtle" value={totalYieldToDisplay} unit=" MLOKY" />
       </Flex>
       <Flex alignItems="center" justifyContent="space-between" mb="24px">
         <Text fontSize="14px" color="textSubtle">

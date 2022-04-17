@@ -63,7 +63,9 @@ import anniversaryAchievementAbi from 'config/abi/anniversaryAchievement.json'
 import nftMarketAbi from 'config/abi/nftMarket.json'
 import nftSaleAbi from 'config/abi/nftSale.json'
 import pancakeSquadAbi from 'config/abi/pancakeSquad.json'
+import mlokyAbi from 'config/abi/mloky.json'
 import erc721CollectionAbi from 'config/abi/erc721collection.json'
+
 import { ChainLinkOracleContract, FarmAuctionContract, PancakeProfileContract, PredictionsContract } from './types'
 
 const getContract = (abi: any, address: string, signer?: ethers.Signer | ethers.providers.Provider) => {
@@ -100,6 +102,9 @@ export const getPointCenterIfoContract = (signer?: ethers.Signer | ethers.provid
 }
 export const getCakeContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
   return getContract(cakeAbi, tokens.cake.address, signer)
+}
+export const getMlokyContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
+  return getContract(mlokyAbi, tokens.mloky.address, signer)
 }
 export const getProfileContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
   return getContract(profileABI, getPancakeProfileAddress(), signer) as PancakeProfileContract

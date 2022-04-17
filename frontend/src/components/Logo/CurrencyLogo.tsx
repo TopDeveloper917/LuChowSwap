@@ -27,11 +27,14 @@ export default function CurrencyLogo({
     if (currency === ETHER) return []
 
     if (currency instanceof Token) {
+      if (currency.address.toLowerCase() === "0xe4e8e6878718bfe533702D4a6571Eb74D79b0915".toLowerCase()) {
+        return ["/images/tokens/0xe4e8e6878718bfe533702D4a6571Eb74D79b0915.svg"]
+      }
+      if (currency.address.toLowerCase() === "0xF71E950758310faF9f7D51C4F4250C7546086C1f".toLowerCase()) {
+        return ["/images/tokens/0xF71E950758310faF9f7D51C4F4250C7546086C1f.svg"]
+      }
       if (currency instanceof WrappedTokenInfo) {
         return [...uriLocations, getTokenLogoURL(currency.address)]
-      }
-      if (currency.address.toLowerCase() === "0xe4e8e6878718bfe533702D4a6571Eb74D79b0915".toLowerCase()) {
-        return ["https://app.luchowswap.com/assets/images/logo.png"]
       }
       return [getTokenLogoURL(currency.address)]
     }

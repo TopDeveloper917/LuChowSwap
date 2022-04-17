@@ -39,6 +39,14 @@ export const mainnetTokens = {
     'LuchowSwap Token',
     'https://lunachow.com/',
   ),
+  mloky: new Token(
+    MAINNET,
+    '0xF71E950758310faF9f7D51C4F4250C7546086C1f',
+    9,
+    'MLOKY',
+    'MLOKY Token',
+    'https://lunachow.com/',
+  ),
   tlos: new Token(MAINNET, '0xb6C53431608E626AC81a9776ac3e999c5556717c', 18, 'TLOS', 'Telos', 'https://www.telos.net/'),
   beta: new Token(
     MAINNET,

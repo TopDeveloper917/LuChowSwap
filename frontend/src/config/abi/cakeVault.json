@@ -7,11 +7,6 @@
         "type": "address"
       },
       {
-        "internalType": "contract IERC20",
-        "name": "_receiptToken",
-        "type": "address"
-      },
-      {
         "internalType": "contract IMasterChef",
         "name": "_masterchef",
         "type": "address"
@@ -261,7 +256,7 @@
   },
   {
     "inputs": [],
-    "name": "calculateHarvestCakeRewards",
+    "name": "calculateHarvestReTkRewards",
     "outputs": [
       {
         "internalType": "uint256",
@@ -274,7 +269,7 @@
   },
   {
     "inputs": [],
-    "name": "calculateTotalPendingCakeRewards",
+    "name": "calculateTotalPendingReTkRewards",
     "outputs": [
       {
         "internalType": "uint256",
@@ -418,19 +413,6 @@
         "internalType": "uint256",
         "name": "",
         "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "receiptToken",
-    "outputs": [
-      {
-        "internalType": "contract IERC20",
-        "name": "",
-        "type": "address"
       }
     ],
     "stateMutability": "view",
@@ -602,7 +584,7 @@
       },
       {
         "internalType": "uint256",
-        "name": "cakeAtLastUserAction",
+        "name": "reTkAtLastUserAction",
         "type": "uint256"
       },
       {

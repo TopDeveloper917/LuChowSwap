@@ -13,8 +13,8 @@ const options = {
 }
 
 const harvestPool = async (sousChefContract) => {
-  const gasPrice = getGasPrice()
-  const tx = await sousChefContract.deposit('0', { ...options, gasPrice })
+  // const gasPrice = getGasPrice()
+  const tx = await sousChefContract.deposit('0')
   const receipt = await tx.wait()
   return receipt.status
 }

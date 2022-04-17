@@ -2,7 +2,8 @@ import React, { useEffect, useCallback, useState, useMemo, useRef } from 'react'
 import { Route, useRouteMatch, useLocation, NavLink } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import { Image, Heading, RowType, Toggle, Text, Button, ArrowForwardIcon, Flex } from '@pancakeswap/uikit'
+// import { Image, Heading, RowType, Toggle, Text, Button, ArrowForwardIcon, Flex } from '@pancakeswap/uikit'
+import { Heading, RowType, Toggle, Text, Button, ArrowForwardIcon, Flex } from '@pancakeswap/uikit'
 import { ChainId } from '@pancakeswap/sdk'
 import styled from 'styled-components'
 import FlexLayout from 'components/Layout/Flex'
@@ -96,12 +97,25 @@ const ViewControls = styled.div`
   }
 `
 
-const StyledImage = styled(Image)`
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 58px;
-`
+// const StyledImage = styled(Image)`
+//   margin-left: auto;
+//   margin-right: auto;
+//   margin-top: 58px;
+// `
 const NUMBER_OF_FARMS_VISIBLE = 12
+
+const UpdatedPageHeader = styled(PageHeader)`
+  background: linear-gradient(to top, #774E2E 20%, #A03314 100%);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+`
+const UpdatedPageHeaderContainer = styled.div`
+  flex: 1;
+`
+const FarmLogo = styled.div`
+  flex: 1;
+`
 
 const getDisplayApr = (cakeRewardsApr?: number, lpRewardsApr?: number) => {
   if (cakeRewardsApr && lpRewardsApr) {
@@ -276,7 +290,7 @@ const Farms: React.FC = () => {
         quoteToken: farm.quoteToken,
       },
       earned: {
-        earnings: getBalanceNumber(new BigNumber(farm.userData.earnings)),
+        earnings: getBalanceNumber(new BigNumber(farm.userData.earnings), 9),
         pid: farm.pid,
       },
       liquidity: {
@@ -369,23 +383,29 @@ const Farms: React.FC = () => {
 
   return (
     <>
-      <PageHeader>
-        <Heading as="h1" scale="xxl" color="secondary" mb="24px">
-          {t('Farms')}
-        </Heading>
-        <Heading scale="lg" color="text">
-          {t('Stake LP tokens to earn.')}
-        </Heading>
-        <NavLink exact activeClassName="active" to="/farms/auction" id="lottery-pot-banner">
-          <Button p="0" variant="text">
-            <Text color="primary" bold fontSize="16px" mr="4px">
-              {t('Community Auctions')}
-            </Text>
-            <ArrowForwardIcon color="primary" />
-          </Button>
-        </NavLink>
-      </PageHeader>
-      <Page>
+      <UpdatedPageHeader>
+        <UpdatedPageHeaderContainer>
+          <Heading as="h1" scale="xxl" color="text" mb="24px">
+            {t('Farms')}
+          </Heading>
+          <Heading scale="lg" color="text">
+            {t('Stake LP tokens to earn.')}
+          </Heading>
+          <NavLink exact activeClassName="active" to="/farms/auction" id="lottery-pot-banner">
+            <Button p="0" variant="text">
+              <Text color="primary" bold fontSize="16px" mr="4px">
+                {t('Community Auctions')}
+              </Text>
+              <ArrowForwardIcon color="primary" />
+            </Button>
+          </NavLink>
+        </UpdatedPageHeaderContainer>
+
+        <FarmLogo>
+          <img src='/assets/images/luchow-with-shadow.png' alt='Farm Logo' style={{height: 400}}/>
+        </FarmLogo>
+      </UpdatedPageHeader>
+      <Page id='farm-body'>
         <ControlContainer>
           <ViewControls>
             <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
@@ -442,7 +462,7 @@ const Farms: React.FC = () => {
           </Flex>
         )}
         <div ref={observerRef} />
-        <StyledImage src="/images/decorations/3dpan.png" alt="Pancake illustration" width={120} height={103} />
+        {/* <StyledImage src="/images/decorations/3dpan.png" alt="Pancake illustration" width={120} height={103} /> */}
       </Page>
     </>
   )

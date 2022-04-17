@@ -10,7 +10,7 @@ import {
   Flex,
   Box,
   Link,
-  Spinner,
+  // Spinner,
   Modal,
   InjectedModalProps,
 } from '@pancakeswap/uikit'
@@ -18,9 +18,11 @@ import { registerToken } from 'utils/wallet'
 import { useTranslation } from 'contexts/Localization'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { wrappedCurrency } from 'utils/wrappedCurrency'
+import CircleLoader from 'components/Loader/CircleLoader'
 import { RowFixed } from '../Layout/Row'
 import { AutoColumn, ColumnCenter } from '../Layout/Column'
 import { getBscScanLink } from '../../utils'
+
 
 const Wrapper = styled.div`
   width: 100%;
@@ -38,7 +40,8 @@ function ConfirmationPendingContent({ pendingText }: { pendingText: string }) {
   return (
     <Wrapper>
       <ConfirmedIcon>
-        <Spinner />
+        {/* <Spinner /> */}
+        <CircleLoader size='48px'/>
       </ConfirmedIcon>
       <AutoColumn gap="12px" justify="center">
         <Text fontSize="20px">{t('Waiting For Confirmation')}</Text>

@@ -14,11 +14,8 @@ const options = {
 }
 
 const sousStake = async (sousChefContract, amount, decimals = 18) => {
-  const gasPrice = getGasPrice()
-  const tx = await sousChefContract.deposit(new BigNumber(amount).times(BIG_TEN.pow(decimals)).toString(), {
-    ...options,
-    gasPrice,
-  })
+  // const gasPrice = getGasPrice()
+  const tx = await sousChefContract.deposit(new BigNumber(amount).times(BIG_TEN.pow(decimals)).toString())
   const receipt = await tx.wait()
   return receipt.status
 }
@@ -42,7 +39,7 @@ const useStakePool = (sousId: number, isUsingBnb = false) => {
   const handleStake = useCallback(
     async (amount: string, decimals: number) => {
       if (sousId === 0) {
-        await stakeFarm(masterChefContract, 0, amount)
+        await stakeFarm(masterChefContract, 0, amount, BIG_TEN.pow(decimals))
       } else if (isUsingBnb) {
         await sousStakeBnb(sousChefContract, amount)
       } else {

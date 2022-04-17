@@ -91,13 +91,13 @@ const PriceChart = ({
         <Flex flexDirection="column" pt="12px">
           {lineChartData?.length > 0 && valueToDisplay ? (
             <Flex alignItems="flex-end">
-              <Text fontSize="40px" mr="8px" bold>
+              <Text fontSize="35px" mr="8px" bold>
                 {formatAmount(valueToDisplay, formatOptions)}
               </Text>
-              <Text color="textSubtle" fontSize="20px" mb="8px" mr="8px" bold>
+              <Text color="textSubtle" fontSize="18px" mb="8px" mr="8px" bold>
                 {outputCurrency?.symbol}
               </Text>
-              <Text color={isChangePositive ? 'success' : 'failure'} fontSize="20px" mb="8px" bold>
+              <Text color={isChangePositive ? 'success' : 'failure'} fontSize="18px" mb="8px" bold>
                 {`${isChangePositive ? '+' : ''}${changeValue.toFixed(3)} (${changePercentage}%)`}
               </Text>
             </Flex>
