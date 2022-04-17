@@ -80,7 +80,7 @@ const StyledButton = styled.button<BaseButtonProps>`
   })}
   ${layout}
   ${space}
-  background: ${({variant, disabled, theme}) => variant === 'primary' && !disabled ? 'linear-gradient(to bottom, #e24717 0%, #491200 100%)' : 'unset'};
+  background: ${({variant, disabled, theme}) => (variant === 'primary' && !disabled) ? 'linear-gradient(to bottom, #e24717 0%, #491200 100%)' : 'unset'};
 `;
 
 export default StyledButton;
