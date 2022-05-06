@@ -1,0 +1,36 @@
+specVersion: 0.0.2
+description: LuchowSwap Lottery
+repository: 
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: Lottery
+    network: bsc
+    source:
+      address: '0xb4796a5aC0CD46e4cA28432c9147780A138f6726'
+      abi: Lottery
+      startBlock: 17157070
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      file: ./mappings/index.ts
+      entities:
+        - Lottery
+        - User
+        - Round
+      abis:
+        - name: Lottery
+          file: ./abis/Lottery.json
+      eventHandlers:
+        - event: LotteryOpen(indexed uint256,uint256,uint256,uint256,uint256,uint256)
+          handler: handleLotteryOpen
+        - event: LotteryClose(indexed uint256,uint256)
+          handler: handleLotteryClose
+        - event: LotteryNumberDrawn(indexed uint256,uint256,uint256)
+          handler: handleLotteryNumberDrawn
+        - event: TicketsPurchase(indexed address,indexed uint256,uint256)
+          handler: handleTicketsPurchase
+        - event: TicketsClaim(indexed address,uint256,indexed uint256,uint256)
+          handler: handleTicketsClaim
