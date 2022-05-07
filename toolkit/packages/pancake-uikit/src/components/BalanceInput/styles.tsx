@@ -24,7 +24,7 @@ export const StyledBalanceInput = styled(Box)<{ isWarning: BalanceInputProps["is
   padding: 8px 16px;
 `;
 
-export const StyledInput = styled(Input)<{ textAlign?: string }>`
+export const StyledInput = styled(Input)<{ textAlign?: string, placeholderColor?: string }>`
   background: transparent;
   border-radius: 0;
   box-shadow: none;
@@ -34,7 +34,7 @@ export const StyledInput = styled(Input)<{ textAlign?: string }>`
   border: none;
 
   ::placeholder {
-    color: ${({ theme }) => theme.colors.textSubtle};
+    color: ${({ theme, placeholderColor }) => placeholderColor ? placeholderColor : theme.colors.textSubtle};
   }
 
   &:focus:not(:disabled) {
