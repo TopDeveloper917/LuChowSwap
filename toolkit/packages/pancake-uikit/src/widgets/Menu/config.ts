@@ -26,15 +26,15 @@ export const links: MenuItemsType[] = [
     items: [
       {
         label: "Exchange",
-        href: "https://exchange.pancakeswap.finance",
+        href: "https://app.luchowswap.com/swap",
       },
       {
         label: "Liquidity",
-        href: "https://exchange.pancakeswap.finance/#/pool",
+        href: "https://app.luchowswap.com/liquidity",
       },
       {
         label: "Charts",
-        href: "https://exchange.pancakeswap.finance/#/charts",
+        href: "https://app.luchowswap.com/charts",
         iconName: "Chart",
         isMobileOnly: true,
       },
@@ -149,7 +149,7 @@ export const userMenulinks: DropdownMenuItems[] = [
   },
   {
     type: DropdownMenuItemType.EXTERNAL_LINK,
-    href: "https://pancakeswap.finance",
+    href: "https://app.luchowswap.com",
     label: "Link",
   },
   {
