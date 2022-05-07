@@ -69,7 +69,7 @@ const MenuItem: React.FC<FooterProps> = ({
             <LogoWithTextIcon isDark width="160px" />
           </Box>
         </Flex>
-        <StyledSocialLinks order={[2]} pb={["42px", null, "32px"]} mb={["0", null, "32px"]} />
+        {/* <StyledSocialLinks order={[2]} pb={["42px", null, "32px"]} mb={["0", null, "32px"]} /> */}
         <StyledToolsContainer
           order={[1, null, 3]}
           flexDirection={["column", null, "row"]}
@@ -91,7 +91,7 @@ const MenuItem: React.FC<FooterProps> = ({
             </Box>
             <Button
               as="a"
-              href="https://app.luchowswap.com/swap?outputCurrency=0xe4e8e6878718bfe533702d4a6571eb74d79b0915"
+              href="https://app.luchowswap.com/swap?outputCurrency=0xe4e8e6878718bfe533702D4a6571Eb74D79b0915"
               target="_blank"
               scale="sm"
               endIcon={<ArrowForwardIcon color={lightColors.backgroundAlt} />}
