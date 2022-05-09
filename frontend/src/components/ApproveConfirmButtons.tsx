@@ -33,6 +33,7 @@ const StyledApproveConfirmButtonRow = styled.div`
 
 const Button = styled(UIKitButton)`
   width: 100%;
+  background: linear-gradient(rgb(247, 239, 0) 0%, rgb(255, 130, 5) 100%);
 
   ${({ theme }) => theme.mediaQueries.md} {
     min-width: 160px;
@@ -121,7 +122,7 @@ const ApproveConfirmButtons: React.FC<ApproveConfirmButtonsProps> = ({
             </Button>
           </Box>
         ) : (
-          <Box>
+          <Box id='lottery-confirm'>
             <Button onClick={onApprove} endIcon={isApproving ? spinnerIcon : undefined} isLoading={isApproving}>
               {isApproving ? t('Enabling') : t('Enable')}
             </Button>
