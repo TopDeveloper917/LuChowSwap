@@ -32,7 +32,7 @@ import { useInactiveListener } from './hooks/useInactiveListener'
 
 // Route-based code splitting
 // Only pool is included in the main bundle because of it's the most visited page
-// const Home = lazy(() => import('./views/Home'))
+const Home = lazy(() => import('./views/Home'))
 const Farms = lazy(() => import('./views/Farms'))
 const FarmAuction = lazy(() => import('./views/FarmAuction'))
 const Lottery = lazy(() => import('./views/Lottery'))
@@ -80,7 +80,8 @@ const App: React.FC = () => {
         <SuspenseWithChunkError fallback={<PageLoader />}>
           <Switch>
             <Route path="/" exact>
-              <Redirect to="/liquidity" />
+              {/* <Redirect to="/liquidity" /> */}
+              <Home /> 
             </Route>
             <Route exact path="/farms/auction">
               <FarmAuction />
