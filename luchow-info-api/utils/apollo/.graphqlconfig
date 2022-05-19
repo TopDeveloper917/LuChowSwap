@@ -1,0 +1,15 @@
+{
+  "name": "LuchowSwap Exchange LITE",
+  "schemaPath": "schema.graphql",
+  "extensions": {
+    "endpoints": {
+      "PancakeSwap Exchange LITE": {
+        "url": "https://api.thegraph.com/subgraphs/name/chenxiwang177/luchow-info",
+        "headers": {
+          "user-agent": "JS GraphQL"
+        },
+        "introspect": false
+      }
+    }
+  }
+}
