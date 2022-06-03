@@ -7,7 +7,7 @@ export const LP_HOLDERS_FEE = 0.0017
 export const TREASURY_FEE = 0.0003
 export const BUYBACK_FEE = 0.0005
 
-export const PCS_V2_START = 1619136000 // April 23, 2021, 12:00:00 AM
+export const PCS_V2_START = 1643677200 // Febrary 1st, 202, 1:00:00 AM
 export const ONE_DAY_UNIX = 86400 // 24h * 60m * 60s
 export const ONE_HOUR_SECONDS = 3600
 
