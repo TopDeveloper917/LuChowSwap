@@ -1,12 +1,22 @@
-# 🥞 Pancake Frontend
+# Luchow Frontend
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/7bebf1a3-be7b-4165-afd1-446256acd5e3/deploy-status)](https://app.netlify.com/sites/pancake-prod/deploys)
+## Quick Start
 
-This project contains the main features of the pancake application.
+install dependencies using **yarn**
 
-If you want to contribute, please refer to the [contributing guidelines](./CONTRIBUTING.md) of this project.
+```sh
+yarn
+```
 
-## Documentation
+start the development server
+```sh
+yarn dev
+```
 
-- [Info](doc/Info.md)
-- [Cypress tests](doc/Cypress.md)
+build with production mode
+```sh
+yarn build
+
+# start the application after build
+yarn start
+```
