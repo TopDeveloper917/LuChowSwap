@@ -3,7 +3,7 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "_cakeTokenAddress",
+        "name": "_luchowTokenAddress",
         "type": "address"
       },
       {
@@ -121,7 +121,7 @@
       {
         "indexed": false,
         "internalType": "uint256",
-        "name": "priceTicketInCake",
+        "name": "priceTicketInLUCHOW",
         "type": "uint256"
       },
       {
@@ -324,19 +324,6 @@
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "cakeToken",
-    "outputs": [
-      {
-        "internalType": "contract IERC20",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
     "inputs": [
       {
         "internalType": "uint256",
@@ -491,6 +478,19 @@
   },
   {
     "inputs": [],
+    "name": "luchowToken",
+    "outputs": [
+      {
+        "internalType": "contract IERC20",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
     "name": "maxNumberTicketsPerBuyOrClaim",
     "outputs": [
       {
@@ -504,7 +504,7 @@
   },
   {
     "inputs": [],
-    "name": "maxPriceTicketInCake",
+    "name": "maxPriceTicketInLUCHOW",
     "outputs": [
       {
         "internalType": "uint256",
@@ -517,7 +517,7 @@
   },
   {
     "inputs": [],
-    "name": "minPriceTicketInCake",
+    "name": "minPriceTicketInLUCHOW",
     "outputs": [
       {
         "internalType": "uint256",
@@ -622,16 +622,16 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "_minPriceTicketInCake",
+        "name": "_minPriceTicketInLUCHOW",
         "type": "uint256"
       },
       {
         "internalType": "uint256",
-        "name": "_maxPriceTicketInCake",
+        "name": "_maxPriceTicketInLUCHOW",
         "type": "uint256"
       }
     ],
-    "name": "setMinAndMaxTicketPriceInCake",
+    "name": "setMinAndMaxTicketPriceInLUCHOW",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -668,7 +668,7 @@
       },
       {
         "internalType": "uint256",
-        "name": "_priceTicketInCake",
+        "name": "_priceTicketInLUCHOW",
         "type": "uint256"
       },
       {
@@ -744,7 +744,7 @@
       {
         "components": [
           {
-            "internalType": "enum PancakeSwapLottery.Status",
+            "internalType": "enum LuchowLottery.Status",
             "name": "status",
             "type": "uint8"
           },
@@ -760,7 +760,7 @@
           },
           {
             "internalType": "uint256",
-            "name": "priceTicketInCake",
+            "name": "priceTicketInLUCHOW",
             "type": "uint256"
           },
           {
@@ -780,7 +780,7 @@
           },
           {
             "internalType": "uint256[6]",
-            "name": "cakePerBracket",
+            "name": "luchowPerBracket",
             "type": "uint256[6]"
           },
           {
@@ -800,7 +800,7 @@
           },
           {
             "internalType": "uint256",
-            "name": "amountCollectedInCake",
+            "name": "amountCollectedInLUCHOW",
             "type": "uint256"
           },
           {
@@ -809,7 +809,7 @@
             "type": "uint32"
           }
         ],
-        "internalType": "struct PancakeSwapLottery.Lottery",
+        "internalType": "struct LuchowLottery.Lottery",
         "name": "",
         "type": "tuple"
       }
