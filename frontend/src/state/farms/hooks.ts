@@ -81,7 +81,7 @@ export const usePollCoreFarmData = () => {
   const { fastRefresh } = useRefresh()
 
   useEffect(() => {
-    dispatch(fetchFarmsPublicDataAsync([4, 2]))
+    dispatch(fetchFarmsPublicDataAsync([4, 2, 1]))
   }, [dispatch, fastRefresh])
 }
 
@@ -142,10 +142,9 @@ export const useLpTokenPrice = (symbol: string) => {
 }
 
 // /!\ Deprecated , use the BUSD hook in /hooks
-
+// MLOKY Price in BUSD
 export const usePriceCakeBusd = (): BigNumber => {
   const cakeBnbFarm = useFarmFromPid(4)
-
   const cakePriceBusdAsString = cakeBnbFarm.tokenPriceBusd
 
   const cakePriceBusd = useMemo(() => {
@@ -153,4 +152,16 @@ export const usePriceCakeBusd = (): BigNumber => {
   }, [cakePriceBusdAsString])
 
   return cakePriceBusd
+}
+// LUCHOW Price in BUSD
+export const usePriceLuchowBusd = (): BigNumber => {
+  const luchowBnbFarm = useFarmFromPid(1)
+
+  const luchowPriceBusdAsString = luchowBnbFarm.tokenPriceBusd
+
+  const luchowPriceBusd = useMemo(() => {
+    return new BigNumber(luchowPriceBusdAsString)
+  }, [luchowPriceBusdAsString])
+
+  return luchowPriceBusd
 }
