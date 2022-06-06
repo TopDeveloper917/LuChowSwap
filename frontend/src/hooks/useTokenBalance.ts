@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
 import { ethers } from 'ethers'
+import axios from 'axios';
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
 import tokens from 'config/constants/tokens'
-import { getBep20Contract, getCakeContract } from 'utils/contractHelpers'
+import { getBep20Contract, getCakeContract, getLuchowContract } from 'utils/contractHelpers'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { simpleRpcProvider } from 'utils/providers'
 import useRefresh from './useRefresh'
@@ -67,6 +68,28 @@ export const useTotalSupply = () => {
   }, [slowRefresh])
 
   return totalSupply
+}
+
+export const useLuchowSupply = () => {
+  const { slowRefresh } = useRefresh()
+  const [totalSupply, setTotalSupply] = useState<BigNumber>()
+  const [marketCap, setMarketCap] = useState<BigNumber>();
+
+  useEffect(() => {
+    async function fetchTotalSupply() {
+      const response = await axios.get(`https://api.luchowswap.com/coinmarketcap/get-quotes`)
+      const responseData = response.data;
+      const supply = responseData.self_reported_circulating_supply;
+      const cap = responseData.self_reported_market_cap;
+      const supplyBigNum = ethers.utils.parseEther(supply.toString());
+      setTotalSupply(new BigNumber(supplyBigNum.toString()))
+      setMarketCap(new BigNumber(cap.toString()))
+    }
+
+    fetchTotalSupply()
+  }, [slowRefresh])
+
+  return [totalSupply, marketCap]
 }
 
 export const useBurnedBalance = (tokenAddress: string) => {
