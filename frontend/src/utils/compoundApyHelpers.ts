@@ -67,7 +67,6 @@ export const getPrincipalForInterest = (
 ) => {
   return DAYS_TO_CALCULATE_AGAINST.map((days) => {
     const apyAsDecimal = getApy(apr, compoundingFrequency, days, performanceFee)
-    // console.log('inside', interest, apyAsDecimal)
     // const apyAsBN = new BigNumber(apyAsDecimal).decimalPlaces(6, BigNumber.ROUND_DOWN).toNumber()
     return parseFloat((interest / apyAsDecimal).toFixed(2))
   })
