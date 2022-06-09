@@ -20,7 +20,6 @@ const flyingAnim = () => keyframes`
     transform: translate(0, 0px);
   }
 `
-
 const fading = () => keyframes`
   from {
     opacity: 0.9;
@@ -32,7 +31,6 @@ const fading = () => keyframes`
     opacity: 0.9;
   }
 `
-
 const BgWrapper = styled.div`
   z-index: -1;
   overflow: hidden;
@@ -42,18 +40,15 @@ const BgWrapper = styled.div`
   bottom: 0px;
   left: 0px;
 `
-
 const InnerWrapper = styled.div`
   position: absolute;
   width: 100%;
   bottom: -3px;
 `
-
 const BunnyWrapper = styled.div`
   width: 100%;
   animation: ${flyingAnim} 3.5s ease-in-out infinite;
 `
-
 const StarsWrapper = styled.div`
   position: absolute;
   top: 0;
@@ -94,9 +89,6 @@ const Hero = () => {
 
   return (
     <>
-      <BgWrapper>
-        <InnerWrapper>{theme.isDark ? <SlideSvgDark width="100%" /> : <SlideSvgLight width="100%" />}</InnerWrapper>
-      </BgWrapper>
       <Flex
         position="relative"
         flexDirection={['column-reverse', null, null, 'row']}
@@ -106,8 +98,11 @@ const Hero = () => {
         id="homepage-hero"
       >
         <Flex flex="1" flexDirection="column">
-          <Heading scale="xxl" color="secondary" mb="24px">
-            {t('The moon is made of pancakes.')}
+          <Heading scale="xxl" color="primary" mb="0px">
+            {t('LuchowSwap')}
+          </Heading>
+          <Heading scale="xxl" color="text" mb="48px">
+            {t('Decentralized Swap')}
           </Heading>
           <Heading scale="md" mb="24px">
             {t('Trade, earn, and win crypto on the most popular decentralized platform in the galaxy.')}
