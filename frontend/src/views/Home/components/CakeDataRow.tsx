@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useTotalSupply, useBurnedBalance } from 'hooks/useTokenBalance'
+import { useLuchowSupply, useBurnedBalance } from 'hooks/useTokenBalance'
 import { getBalanceNumber, formatLocalisedCompactNumber } from 'utils/formatBalance'
-import { usePriceCakeBusd } from 'state/farms/hooks'
+import { usePriceLuchowBusd } from 'state/farms/hooks'
 import { Flex, Text, Heading, Skeleton } from '@pancakeswap/uikit'
 import { useTranslation } from 'contexts/Localization'
 import Balance from 'components/Balance'
@@ -41,16 +41,14 @@ const Grid = styled.div`
   }
 `
 
-const emissionsPerBlock = 14.5
+const emissionsPerBlock = 1.9
 
 const CakeDataRow = () => {
   const { t } = useTranslation()
-  const totalSupply = useTotalSupply()
-  const burnedBalance = getBalanceNumber(useBurnedBalance(tokens.cake.address))
+  const [totalSupply, mcap] = useLuchowSupply()
+  const burnedBalance = getBalanceNumber(useBurnedBalance(tokens.luchow.address))
   const cakeSupply = totalSupply ? getBalanceNumber(totalSupply) - burnedBalance : 0
-  const cakePriceBusd = usePriceCakeBusd()
-  const mcap = cakePriceBusd.times(cakeSupply)
-  const mcapString = formatLocalisedCompactNumber(mcap.toNumber())
+  const mcapString = mcap ? formatLocalisedCompactNumber(mcap.toNumber()) : 0
 
   return (
     <Grid>
