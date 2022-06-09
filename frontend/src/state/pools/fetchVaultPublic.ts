@@ -4,6 +4,7 @@ import { multicallv2 } from 'utils/multicall'
 import cakeVaultAbi from 'config/abi/cakeVault.json'
 import { getCakeVaultAddress } from 'utils/addressHelpers'
 import { BIG_ZERO } from 'utils/bigNumber'
+import { getBalanceAmount } from 'utils/formatBalance'
 
 export const fetchPublicVaultData = async () => {
   try {
@@ -23,7 +24,7 @@ export const fetchPublicVaultData = async () => {
     )
 
     const totalSharesAsBigNumber = shares ? new BigNumber(shares.toString()) : BIG_ZERO
-    const sharePriceAsBigNumber = sharePrice ? new BigNumber(sharePrice.toString()) : BIG_ZERO
+    const sharePriceAsBigNumber = sharePrice ? getBalanceAmount(new BigNumber(sharePrice.toString()), 9) : BIG_ZERO
     const totalCakeInVaultEstimate = convertSharesToCake(totalSharesAsBigNumber, sharePriceAsBigNumber)
     return {
       totalShares: totalSharesAsBigNumber.toJSON(),
