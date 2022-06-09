@@ -97,24 +97,20 @@ const ViewControls = styled.div`
   }
 `
 
-// const StyledImage = styled(Image)`
-//   margin-left: auto;
-//   margin-right: auto;
-//   margin-top: 58px;
-// `
 const NUMBER_OF_FARMS_VISIBLE = 12
 
-const UpdatedPageHeader = styled(PageHeader)`
-  background: linear-gradient(to top, #774E2E 20%, #A03314 100%);
+const UpdatedPageHeader = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   position: relative;
+  align-items: center;
+  justify-content: space-between;
 `
 const UpdatedPageHeaderContainer = styled.div`
-  flex: 1;
+
 `
 const FarmLogo = styled.div`
-  flex: 1;
+
 `
 
 const getDisplayApr = (cakeRewardsApr?: number, lpRewardsApr?: number) => {
@@ -383,28 +379,30 @@ const Farms: React.FC = () => {
 
   return (
     <>
-      <UpdatedPageHeader>
-        <UpdatedPageHeaderContainer>
-          <Heading as="h1" scale="xxl" color="text" mb="24px">
-            {t('Farms')}
-          </Heading>
-          <Heading scale="lg" color="text">
-            {t('Stake LP tokens to earn.')}
-          </Heading>
-          <NavLink exact activeClassName="active" to="/farms/auction" id="lottery-pot-banner">
-            <Button p="0" variant="text">
-              <Text color="primary" bold fontSize="16px" mr="4px">
-                {t('Community Auctions')}
-              </Text>
-              <ArrowForwardIcon color="primary" />
-            </Button>
-          </NavLink>
-        </UpdatedPageHeaderContainer>
+      <PageHeader background='linear-gradient(to top, #774E2E 20%, #A03314 100%)'>
+        <UpdatedPageHeader>
+          <UpdatedPageHeaderContainer>
+            <Heading as="h1" scale="xxl" color="text" mb="24px">
+              {t('Farms')}
+            </Heading>
+            <Heading scale="lg" color="text">
+              {t('Stake LP tokens to earn.')}
+            </Heading>
+            {/* <NavLink exact activeClassName="active" to="/farms/auction" id="lottery-pot-banner">
+              <Button p="0" variant="text">
+                <Text color="primary" bold fontSize="16px" mr="4px">
+                  {t('Community Auctions')}
+                </Text>
+                <ArrowForwardIcon color="primary" />
+              </Button>
+            </NavLink> */}
+          </UpdatedPageHeaderContainer>
 
-        <FarmLogo>
-          <img src='/assets/images/luchow-with-shadow.png' alt='Farm Logo' style={{height: 400}}/>
-        </FarmLogo>
-      </UpdatedPageHeader>
+          <FarmLogo>
+            <img src='/assets/images/luchow.png' alt='Farm Logo' style={{ height: 250 }} />
+          </FarmLogo>
+        </UpdatedPageHeader>
+      </PageHeader>
       <Page id='farm-body'>
         <ControlContainer>
           <ViewControls>
@@ -462,7 +460,6 @@ const Farms: React.FC = () => {
           </Flex>
         )}
         <div ref={observerRef} />
-        {/* <StyledImage src="/images/decorations/3dpan.png" alt="Pancake illustration" width={120} height={103} /> */}
       </Page>
     </>
   )
