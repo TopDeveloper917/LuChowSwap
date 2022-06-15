@@ -42,7 +42,7 @@ const SalesSection: React.FC<SalesSectionProps> = (props) => {
           mr={[null, null, null, !reverse && '64px']}
           alignSelf={['flex-start', null, null, 'center']}
         >
-          <ColoredWordHeading text={headingTranslatedText} />
+          <ColoredWordHeading text={headingTranslatedText} firstColor='primary' />
           <Text color="textSubtle" mb="24px">
             {bodyTranslatedText}
           </Text>
@@ -63,11 +63,11 @@ const SalesSection: React.FC<SalesSectionProps> = (props) => {
               )}
             </Button>
             {secondaryButton.external ? (
-              <Link external href={secondaryButton.to}>
+              <Link external href={secondaryButton.to} color='text'>
                 {t(secondaryButton.text)}
               </Link>
             ) : (
-              <RouterLink to={secondaryButton.to}>{t(secondaryButton.text)}</RouterLink>
+              <RouterLink to={secondaryButton.to} color='text'>{t(secondaryButton.text)}</RouterLink>
             )}
           </Flex>
         </Flex>
