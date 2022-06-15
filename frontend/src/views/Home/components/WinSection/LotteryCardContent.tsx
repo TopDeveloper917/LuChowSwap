@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { useTranslation } from 'contexts/Localization'
 import useRefresh from 'hooks/useRefresh'
 import useIntersectionObserver from 'hooks/useIntersectionObserver'
-import { usePriceCakeBusd } from 'state/farms/hooks'
+import {  usePriceLuchowBusd } from 'state/farms/hooks'
 import Balance from 'components/Balance'
 import styled from 'styled-components'
 import { fetchCurrentLotteryIdAndMaxBuy, fetchLottery } from 'state/lottery/helpers'
@@ -28,9 +28,9 @@ const LotteryCardContent = () => {
   const { slowRefresh } = useRefresh()
   const [lotteryId, setLotteryId] = useState<string>(null)
   const [currentLotteryPrize, setCurrentLotteryPrize] = useState<BigNumber>(null)
-  const cakePriceBusdAsString = usePriceCakeBusd().toString()
+  const cakePriceBusdAsString = usePriceLuchowBusd().toString()
 
-  const cakePrizesText = t('%cakePrizeInUsd% in CAKE prizes this round', { cakePrizeInUsd: cakePriceBusdAsString })
+  const cakePrizesText = t('%cakePrizeInUsd% in LUCHOW prizes this round', { cakePrizeInUsd: cakePriceBusdAsString })
   const [pretext, prizesThisRound] = cakePrizesText.split(cakePriceBusdAsString)
 
   const cakePriceBusd = useMemo(() => {
@@ -84,7 +84,7 @@ const LotteryCardContent = () => {
             fontSize="40px"
             bold
             prefix="$"
-            decimals={0}
+            decimals={2}
             value={getBalanceAmount(currentLotteryPrize).toNumber()}
           />
         ) : (
@@ -97,16 +97,16 @@ const LotteryCardContent = () => {
           {prizesThisRound}
         </Text>
         <Text color="white" mb="40px">
-          {t('Buy tickets with CAKE, win CAKE if your numbers match')}
+          {t('Buy tickets with LUCHOW, win LUCHOW if your numbers match')}
         </Text>
       </Flex>
       <Flex alignItems="center" justifyContent="center">
         <StyledLink to="/lottery" id="homepage-prediction-cta">
           <Button width="100%">
-            <Text bold color="invertedContrast">
+            <Text bold color="text">
               {t('Buy Tickets')}
             </Text>
-            <ArrowForwardIcon ml="4px" color="invertedContrast" />
+            {/* <ArrowForwardIcon ml="4px" color="text" /> */}
           </Button>
         </StyledLink>
       </Flex>
