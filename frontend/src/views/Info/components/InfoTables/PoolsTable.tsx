@@ -160,14 +160,14 @@ const PoolTable: React.FC<PoolTableProps> = ({ poolDatas, loading }) => {
   return (
     <TableWrapper>
       <ResponsiveGrid>
-        <Text color="secondary" fontSize="12px" bold>
+        <Text color="primary" fontSize="12px" bold>
           #
         </Text>
-        <Text color="secondary" fontSize="12px" bold textTransform="uppercase">
+        <Text color="primary" fontSize="12px" bold textTransform="uppercase">
           {t('Pool')}
         </Text>
         <ClickableColumnHeader
-          color="secondary"
+          color="primary"
           fontSize="12px"
           bold
           onClick={() => handleSort(SORT_FIELD.volumeUSD)}
@@ -176,7 +176,7 @@ const PoolTable: React.FC<PoolTableProps> = ({ poolDatas, loading }) => {
           {t('Volume 24H')} {arrow(SORT_FIELD.volumeUSD)}
         </ClickableColumnHeader>
         <ClickableColumnHeader
-          color="secondary"
+          color="primary"
           fontSize="12px"
           bold
           onClick={() => handleSort(SORT_FIELD.volumeUSDWeek)}
@@ -185,7 +185,7 @@ const PoolTable: React.FC<PoolTableProps> = ({ poolDatas, loading }) => {
           {t('Volume 7D')} {arrow(SORT_FIELD.volumeUSDWeek)}
         </ClickableColumnHeader>
         <ClickableColumnHeader
-          color="secondary"
+          color="primary"
           fontSize="12px"
           bold
           onClick={() => handleSort(SORT_FIELD.lpFees24h)}
@@ -194,7 +194,7 @@ const PoolTable: React.FC<PoolTableProps> = ({ poolDatas, loading }) => {
           {t('LP reward fees 24H')} {arrow(SORT_FIELD.lpFees24h)}
         </ClickableColumnHeader>
         <ClickableColumnHeader
-          color="secondary"
+          color="primary"
           fontSize="12px"
           bold
           onClick={() => handleSort(SORT_FIELD.lpApr7d)}
@@ -203,7 +203,7 @@ const PoolTable: React.FC<PoolTableProps> = ({ poolDatas, loading }) => {
           {t('LP reward APR')} {arrow(SORT_FIELD.lpApr7d)}
         </ClickableColumnHeader>
         <ClickableColumnHeader
-          color="secondary"
+          color="primary"
           fontSize="12px"
           bold
           onClick={() => handleSort(SORT_FIELD.liquidityUSD)}
