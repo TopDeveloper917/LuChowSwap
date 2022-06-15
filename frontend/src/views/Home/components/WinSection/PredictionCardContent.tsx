@@ -51,9 +51,10 @@ const PredictionCardContent = () => {
           {t('Prediction')}
         </Text>
         {bnbWonInUsd ? (
-          <Heading color="#280D5F" my="8px" scale="xl" bold>
-            {pretext}
-            {localisedBnbUsdString}
+          <Heading color="primary" my="8px" scale="xl" bold>
+            Coming...
+            {/* {pretext} */}
+            {/* {localisedBnbUsdString} */}
           </Heading>
         ) : (
           <>
@@ -69,12 +70,12 @@ const PredictionCardContent = () => {
         </Text>
       </Flex>
       <Flex alignItems="center" justifyContent="center">
-        <StyledLink to="/prediction" id="homepage-prediction-cta">
+        <StyledLink to="/" id="homepage-prediction-cta">
           <Button width="100%">
-            <Text bold color="invertedContrast">
-              {t('Play')}
+            <Text bold color="text">
+              {t('Coming Soon')}
             </Text>
-            <ArrowForwardIcon ml="4px" color="invertedContrast" />
+            {/* <ArrowForwardIcon ml="4px" color="text" /> */}
           </Button>
         </StyledLink>
       </Flex>
