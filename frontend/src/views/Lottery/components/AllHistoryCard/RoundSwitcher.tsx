@@ -62,6 +62,7 @@ const RoundSwitcher: React.FC<RoundSwitcherProps> = ({
           value={selectedRoundId}
           scale="lg"
           onChange={handleOnChange}
+          style={{background: 'linear-gradient(180deg, #f7ef00 0%, #ff8205 100%)', color: '#a83514', border: 'none'}}
         />
       </Flex>
       <Flex alignItems="center">
@@ -72,7 +73,7 @@ const RoundSwitcher: React.FC<RoundSwitcherProps> = ({
           scale="sm"
           mr="4px"
         >
-          <ArrowBackIcon />
+          <ArrowBackIcon color='#f7ef00' />
         </StyledIconButton>
         <StyledIconButton
           disabled={selectedRoundIdAsInt >= mostRecentRound}
@@ -81,7 +82,7 @@ const RoundSwitcher: React.FC<RoundSwitcherProps> = ({
           scale="sm"
           mr="4px"
         >
-          <ArrowForwardIcon />
+          <ArrowForwardIcon color='#f7ef00' />
         </StyledIconButton>
         <StyledIconButton
           disabled={selectedRoundIdAsInt >= mostRecentRound}
@@ -89,7 +90,7 @@ const RoundSwitcher: React.FC<RoundSwitcherProps> = ({
           variant="text"
           scale="sm"
         >
-          <ArrowLastIcon />
+          <ArrowLastIcon color='#f7ef00' />
         </StyledIconButton>
       </Flex>
     </Flex>
