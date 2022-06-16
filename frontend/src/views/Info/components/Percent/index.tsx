@@ -13,7 +13,7 @@ const Percent: React.FC<PercentProps> = ({ value, ...rest }) => {
   const isNegative = value < 0
 
   return (
-    <Text {...rest} color={isNegative ? 'failure' : 'success'}>
+    <Text {...rest} color={isNegative ? 'failure' : 'primary'}>
       {isNegative ? '↓' : '↑'}
       {Math.abs(value).toFixed(2)}%
     </Text>
