@@ -5,7 +5,7 @@ import { useTranslation } from 'contexts/Localization'
 import { LotteryTicket, LotteryTicketClaimData } from 'config/constants/types'
 import { getBalanceAmount } from 'utils/formatBalance'
 import { callWithEstimateGas } from 'utils/calls'
-import { usePriceCakeBusd } from 'state/farms/hooks'
+import { usePriceLuchowBusd } from 'state/farms/hooks'
 import { useLottery } from 'state/lottery/hooks'
 import { fetchUserLotteries } from 'state/lottery'
 import { useGasPrice } from 'state/user/hooks'
@@ -37,7 +37,7 @@ const ClaimInnerContainer: React.FC<ClaimInnerProps> = ({ onSuccess, roundsToCla
   const lotteryContract = useLotteryV2Contract()
   const activeClaimData = roundsToClaim[activeClaimIndex]
 
-  const cakePriceBusd = usePriceCakeBusd()
+  const cakePriceBusd = usePriceLuchowBusd()
   const cakeReward = activeClaimData.cakeTotal
   const dollarReward = cakeReward.times(cakePriceBusd)
   const rewardAsBalance = getBalanceAmount(cakeReward).toNumber()
@@ -95,7 +95,7 @@ const ClaimInnerContainer: React.FC<ClaimInnerProps> = ({ onSuccess, roundsToCla
         toastSuccess(
           t('Prizes Collected!'),
           <ToastDescriptionWithTx txHash={receipt.transactionHash}>
-            {t('Your CAKE prizes for round %lotteryId% have been sent to your wallet', { lotteryId })}
+            {t('Your LUCHOW prizes for round %lotteryId% have been sent to your wallet', { lotteryId })}
           </ToastDescriptionWithTx>,
         )
         setPendingTx(false)
@@ -161,7 +161,7 @@ const ClaimInnerContainer: React.FC<ClaimInnerProps> = ({ onSuccess, roundsToCla
       setPendingTx(false)
       toastSuccess(
         t('Prizes Collected!'),
-        t('Your CAKE prizes for round %lotteryId% have been sent to your wallet', { lotteryId }),
+        t('Your LUCHOW prizes for round %lotteryId% have been sent to your wallet', { lotteryId }),
       )
       handleProgressToNextClaim()
     }
@@ -185,7 +185,7 @@ const ClaimInnerContainer: React.FC<ClaimInnerProps> = ({ onSuccess, roundsToCla
             fontSize="44px"
             bold
             color="secondary"
-            unit=" CAKE!"
+            unit=" LUCHOW!"
           />
           <PresentWonIcon ml={['0', null, '12px']} width="64px" />
         </Flex>
@@ -194,14 +194,14 @@ const ClaimInnerContainer: React.FC<ClaimInnerProps> = ({ onSuccess, roundsToCla
           textAlign={['center', null, 'left']}
           value={dollarRewardAsBalance}
           fontSize="12px"
-          color="textSubtle"
+          color="text"
           unit=" USD"
           prefix="~"
         />
       </Flex>
 
       <Flex alignItems="center" justifyContent="center">
-        <Text mt="8px" fontSize="12px" color="textSubtle">
+        <Text mt="8px" fontSize="12px" color="text">
           {t('Round')} #{activeClaimData.roundId}
         </Text>
       </Flex>
@@ -212,6 +212,7 @@ const ClaimInnerContainer: React.FC<ClaimInnerProps> = ({ onSuccess, roundsToCla
           mt="20px"
           width="100%"
           onClick={() => (shouldBatchRequest ? handleBatchClaim() : handleClaim())}
+          style={{background: 'linear-gradient(180deg, #f7ef00 0%, #ff8205 100%)'}}
         >
           {pendingTx ? t('Claiming') : t('Claim')} {pendingBatchClaims > 1 ? `(${pendingBatchClaims})` : ''}
         </Button>
