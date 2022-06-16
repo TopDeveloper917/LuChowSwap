@@ -108,12 +108,12 @@ const Overview: React.FC = () => {
   return (
     <Page>
       <Heading scale="lg" mb="16px" id="info-overview-title">
-        {t('PancakeSwap Info & Analytics')}
+        {t('LuchowSwap Info & Analytics')}
       </Heading>
       <ChartCardsContainer>
         <Card>
           <Box p={['16px', '16px', '24px']}>
-            <Text bold color="secondary">
+            <Text bold color="primary">
               {t('Liquidity')}
             </Text>
             {liquidityHover > 0 ? (
@@ -135,7 +135,7 @@ const Overview: React.FC = () => {
         </Card>
         <Card>
           <Box p={['16px', '16px', '24px']}>
-            <Text bold color="secondary">
+            <Text bold color="primary">
               {t('Volume 24H')}
             </Text>
             {volumeHover > 0 ? (
