@@ -14,6 +14,7 @@ import ClaimPrizesInner from './ClaimPrizesInner'
 const StyledModal = styled(ModalContainer)`
   position: relative;
   overflow: visible;
+  border: none;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     min-width: 380px;
@@ -21,14 +22,15 @@ const StyledModal = styled(ModalContainer)`
 `
 
 const StyledModalHeader = styled(ModalHeader)`
-  background: ${({ theme }) => theme.colors.gradients.cardHeader};
+  background: rgb(192, 53, 6);
   border-top-right-radius: 32px;
   border-top-left-radius: 32px;
+  padding-bottom: 12px;
 `
 
 const BunnyDecoration = styled.div`
   position: absolute;
-  top: -116px; // line up bunny at the top of the modal
+  top: -86px; // line up bunny at the top of the modal
   left: 0px;
   text-align: center;
   width: 100%;
@@ -65,15 +67,16 @@ const ClaimPrizesModal: React.FC<ClaimPrizesModalModalProps> = ({ onDismiss, rou
   return (
     <StyledModal minWidth="280px">
       <BunnyDecoration>
-        <img src="/images/decorations/prize-bunny.png" alt="bunny decoration" height="124px" width="168px" />
+        {/* <img src="/images/decorations/prize-bunny.png" alt="bunny decoration" height="124px" width="168px" /> */}
+        <img src="/images/lottery/00.png" alt="bunny decoration" height="124px" width="168px" />
       </BunnyDecoration>
-      <StyledModalHeader>
+      <StyledModalHeader >
         <ModalTitle>
           <Heading>{t('Collect Winnings')}</Heading>
         </ModalTitle>
         <ModalCloseButton onDismiss={onDismiss} />
       </StyledModalHeader>
-      <ModalBody p="24px">
+      <ModalBody p="24px" style={{background: 'rgb(246, 93, 28)', borderBottomRightRadius: 24, borderBottomLeftRadius: 24}}>
         <ClaimPrizesInner
           onSuccess={() => {
             dispatch(fetchUserLotteries({ account, currentLotteryId }))
