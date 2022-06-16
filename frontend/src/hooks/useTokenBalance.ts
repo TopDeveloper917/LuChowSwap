@@ -81,9 +81,11 @@ export const useLuchowSupply = () => {
       const responseData = response.data;
       const supply = responseData.self_reported_circulating_supply;
       const cap = responseData.self_reported_market_cap;
-      const supplyBigNum = ethers.utils.parseEther(supply.toString());
-      setTotalSupply(new BigNumber(supplyBigNum.toString()))
-      setMarketCap(new BigNumber(cap.toString()))
+      if (supply) {
+        const supplyBigNum = ethers.utils.parseEther(supply.toString());
+        setTotalSupply(new BigNumber(supplyBigNum.toString()))
+      }
+      if (cap) setMarketCap(new BigNumber(cap.toString()))
     }
 
     fetchTotalSupply()
