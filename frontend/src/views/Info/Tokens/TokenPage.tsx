@@ -20,7 +20,7 @@ import {
 import Page from 'components/Layout/Page'
 import { getBscScanLink } from 'utils'
 import truncateHash from 'utils/truncateHash'
-import useCMCLink from 'views/Info/hooks/useCMCLink'
+// import useCMCLink from 'views/Info/hooks/useCMCLink'
 import { CurrencyLogo } from 'views/Info/components/CurrencyLogo'
 import { formatAmount } from 'views/Info/utils/formatInfoNumbers'
 import Percent from 'views/Info/components/Percent'
@@ -78,7 +78,7 @@ const TokenPage: React.FC<RouteComponentProps<{ address: string }>> = ({
   // In case somebody pastes checksummed address into url (since GraphQL expects lowercase address)
   const address = routeAddress.toLowerCase()
 
-  const cmcLink = useCMCLink(address)
+  // const cmcLink = useCMCLink(address)
 
   const tokenData = useTokenData(address)
   const poolsForToken = usePoolsForToken(address)
@@ -141,11 +141,11 @@ const TokenPage: React.FC<RouteComponentProps<{ address: string }>> = ({
                 <LinkExternal mr="8px" color="primary" href={getBscScanLink(address, 'address')}>
                   {t('View on BscScan')}
                 </LinkExternal>
-                {cmcLink && (
+                {/* {cmcLink && (
                   <StyledCMCLink href={cmcLink} rel="noopener noreferrer nofollow" target="_blank">
                     <Image src="/images/CMC-logo.svg" height={22} width={22} alt={t('View token on CoinMarketCap')} />
                   </StyledCMCLink>
-                )}
+                )} */}
                 <SaveIcon fill={watchlistTokens.includes(address)} onClick={() => addWatchlistToken(address)} />
               </Flex>
             </Flex>
