@@ -65,7 +65,7 @@ const CheckPrizesSection = () => {
     if (!account) {
       return (
         <Flex alignItems="center" justifyContent="center">
-          <TicketImage src="/images/lottery/ticket-l.png" alt="lottery ticket" />
+          <TicketImage src="/images/lottery/ticket01.png" alt="lottery ticket" style={{width: 120, height: 90}} />
           <Flex mx={['4px', null, '16px']} flexDirection="column" alignItems="center">
             <Heading textAlign="center" color="#F4EEFF">
               {t('Connect your wallet')}
@@ -73,16 +73,16 @@ const CheckPrizesSection = () => {
             <Heading textAlign="center" color="#F4EEFF" mb="24px">
               {t("to check if you've won!")}
             </Heading>
-            <ConnectWalletButton width="190px" />
+            <ConnectWalletButton width="190px" style={{background: 'linear-gradient(180deg, #f7ef00 0%, #ff8205 100%)', color: '#A83514'}} scale='sm' />
           </Flex>
-          <TicketImage src="/images/lottery/ticket-r.png" alt="lottery ticket" />
+          <TicketImage src="/images/lottery/ticket02.png" alt="lottery ticket" style={{width: 110, height: 60, transform: 'rotate(-25deg)'}} />
         </Flex>
       )
     }
     if (hasCheckedForRewards && !hasRewardsToClaim) {
       return (
         <Flex alignItems="center" justifyContent="center">
-          <TornTicketImage src="/images/lottery/torn-ticket-l.png" alt="torn lottery ticket" />
+          <TornTicketImage src="/images/lottery/ticket01.png" alt="torn lottery ticket" style={{width: 120, height: 90}}  />
           <Flex mx={['4px', null, '16px']} flexDirection="column">
             <Heading textAlign="center" color="#F4EEFF">
               {t('No prizes to collect')}...
@@ -91,14 +91,14 @@ const CheckPrizesSection = () => {
               {t('Better luck next time!')}
             </Heading>
           </Flex>
-          <TornTicketImage src="/images/lottery/torn-ticket-r.png" alt="torn lottery ticket" />
+          <TornTicketImage src="/images/lottery/ticket02.png" alt="torn lottery ticket" style={{width: 110, height: 60, transform: 'rotate(-25deg)'}} />
         </Flex>
       )
     }
     if (hasCheckedForRewards && hasRewardsToClaim) {
       return (
         <Flex alignItems="center" justifyContent="center">
-          <TicketImage src="/images/lottery/ticket-l.png" alt="lottery ticket" />
+          <TicketImage src="/images/lottery/ticket01.png" alt="lottery ticket" style={{width: 120, height: 90}}  />
           <Flex mx={['4px', null, '16px']} flexDirection="column">
             <Heading textAlign="center" color="#F4EEFF">
               {t('Congratulations!')}
@@ -107,7 +107,7 @@ const CheckPrizesSection = () => {
               {t('Why not play again')}
             </Heading>
           </Flex>
-          <TicketImage src="/images/lottery/ticket-r.png" alt="lottery ticket" />
+          <TicketImage src="/images/lottery/ticket02.png" alt="lottery ticket" style={{width: 110, height: 60, transform: 'rotate(-25deg)'}} />
         </Flex>
       )
     }
@@ -122,7 +122,7 @@ const CheckPrizesSection = () => {
     }
     return (
       <Flex alignItems="center" justifyContent="center">
-        <TicketImage src="/images/lottery/ticket-l.png" alt="lottery ticket" />
+        <TicketImage src="/images/lottery/ticket01.png" alt="lottery ticket" style={{width: 120, height: 90}}  />
         <Flex mx={['4px', null, '16px']} flexDirection="column">
           <Heading textAlign="center" color="#F4EEFF" mb="24px">
             {t('Are you a winner?')}
@@ -132,11 +132,12 @@ const CheckPrizesSection = () => {
             onClick={fetchAllRewards}
             isLoading={isFetchingRewards}
             endIcon={isFetchingRewards ? <AutoRenewIcon color="currentColor" spin /> : null}
+            style={{background: 'linear-gradient(180deg, #f7ef00 0%, #ff8205 100%)', color: '#A83514'}} scale='sm'
           >
             {checkNowText()}
           </Button>
         </Flex>
-        <TicketImage src="/images/lottery/ticket-r.png" alt="lottery ticket" />
+        <TicketImage src="/images/lottery/ticket02.png" alt="lottery ticket" style={{width: 110, height: 60, transform: 'rotate(-25deg)'}} />
       </Flex>
     )
   }
