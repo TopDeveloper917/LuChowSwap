@@ -99,8 +99,8 @@ const AllHistoryCard = () => {
   }
 
   return (
-    <StyledCard>
-      <StyledCardHeader>
+    <StyledCard style={{background: 'transparent'}} background='transparent'>
+      <StyledCardHeader style={{ background: '#f65d1c', borderBottom: '1px #f7ef00 solid'}}>
         <RoundSwitcher
           isLoading={isLoading}
           selectedRoundId={selectedRoundId}
@@ -121,7 +121,7 @@ const AllHistoryCard = () => {
         </Box>
       </StyledCardHeader>
       <PreviousRoundCardBody lotteryNodeData={selectedLotteryNodeData} lotteryId={selectedRoundId} />
-      <PreviousRoundCardFooter lotteryNodeData={selectedLotteryNodeData} lotteryId={selectedRoundId} />
+      <PreviousRoundCardFooter lotteryNodeData={selectedLotteryNodeData} lotteryId={selectedRoundId}/>
     </StyledCard>
   )
 }
