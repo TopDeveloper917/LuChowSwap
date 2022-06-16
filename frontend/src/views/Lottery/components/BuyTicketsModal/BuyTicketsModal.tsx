@@ -8,6 +8,7 @@ import {
   Flex,
   HelpIcon,
   BalanceInput,
+  BalanceInputLottery,
   Ticket,
   useTooltip,
   Skeleton,
@@ -20,13 +21,13 @@ import tokens from 'config/constants/tokens'
 import { getFullDisplayBalance } from 'utils/formatBalance'
 import { BIG_ZERO, ethersToBigNumber } from 'utils/bigNumber'
 import { useAppDispatch } from 'state'
-import { usePriceCakeBusd } from 'state/farms/hooks'
+import { usePriceLuchowBusd } from 'state/farms/hooks'
 import { useLottery } from 'state/lottery/hooks'
 import { fetchUserTicketsAndLotteries } from 'state/lottery'
 import useTheme from 'hooks/useTheme'
 import useTokenBalance, { FetchStatus } from 'hooks/useTokenBalance'
 import useApproveConfirmTransaction from 'hooks/useApproveConfirmTransaction'
-import { useCake, useLotteryV2Contract } from 'hooks/useContract'
+import { useERC20, useLotteryV2Contract } from 'hooks/useContract'
 import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
 import useToast from 'hooks/useToast'
 import ConnectWalletButton from 'components/ConnectWalletButton'
@@ -37,15 +38,21 @@ import EditNumbersModal from './EditNumbersModal'
 import { useTicketsReducer } from './useTicketsReducer'
 
 const StyledModal = styled(Modal)`
-  min-width: 280px;
-  max-width: 320px;
+  min-width: 320px;
+  max-width: 480px;
+  border-color: #f65d1c;
+  background: #db4614;
 `
 
-const ShortcutButtonsWrapper = styled(Flex)<{ isVisible: boolean }>`
+const ShortcutButtonsWrapper = styled(Flex) <{ isVisible: boolean }>`
   justify-content: space-between;
   margin-top: 8px;
   margin-bottom: 24px;
   display: ${({ isVisible }) => (isVisible ? 'flex' : 'none')};
+`
+const LotteryTicket = styled.img`
+  width: 40px;
+  margin-right: 10px;
 `
 
 interface BuyTicketsModalProps {
@@ -80,14 +87,14 @@ const BuyTicketsModal: React.FC<BuyTicketsModalProps> = ({ onDismiss }) => {
   const [maxTicketPurchaseExceeded, setMaxTicketPurchaseExceeded] = useState(false)
   const [userNotEnoughCake, setUserNotEnoughCake] = useState(false)
   const lotteryContract = useLotteryV2Contract()
-  const cakeContract = useCake()
+  const cakeContract = useERC20(tokens.luchow.address)
   const { toastSuccess } = useToast()
-  const { balance: userCake, fetchStatus } = useTokenBalance(tokens.cake.address)
+  const { balance: userCake, fetchStatus } = useTokenBalance(tokens.luchow.address)
   // balance from useTokenBalance causes rerenders in effects as a new BigNumber is instantiated on each render, hence memoising it using the stringified value below.
   const stringifiedUserCake = userCake.toJSON()
   const memoisedUserCake = useMemo(() => new BigNumber(stringifiedUserCake), [stringifiedUserCake])
 
-  const cakePriceBusd = usePriceCakeBusd()
+  const luchowPriceBusd = usePriceLuchowBusd()
   const dispatch = useAppDispatch()
   const hasFetchedBalance = fetchStatus === FetchStatus.SUCCESS
   const userCakeDisplayBalance = getFullDisplayBalance(userCake, 18, 3)
@@ -270,7 +277,7 @@ const BuyTicketsModal: React.FC<BuyTicketsModalProps> = ({ onDismiss }) => {
     })
 
   const getErrorMessage = () => {
-    if (userNotEnoughCake) return t('Insufficient CAKE balance')
+    if (userNotEnoughCake) return t('Insufficient LUCHOW balance')
     return t('The maximum number of tickets you can buy in one transaction is %maxTickets%', {
       maxTickets: maxNumberTicketsPerBuyOrClaim.toString(),
     })
@@ -308,41 +315,48 @@ const BuyTicketsModal: React.FC<BuyTicketsModalProps> = ({ onDismiss }) => {
   }
 
   return (
-    <StyledModal title={t('Buy Tickets')} onDismiss={onDismiss} headerBackground={theme.colors.gradients.cardHeader}>
+    <StyledModal title={t('Buy Tickets')} onDismiss={onDismiss} headerBackground='#f65d1c' bodyPadding='0px'>
       {tooltipVisible && tooltip}
-      <Flex alignItems="center" justifyContent="space-between" mb="8px">
-        <Text color="textSubtle">{t('Buy')}:</Text>
+      <Flex alignItems="center" justifyContent="space-between" mb="8px" style={{ padding: '12px 24px', background: '#db4614' }}>
+        <Text color="text">{t('Buy')}:</Text>
         <Flex alignItems="center" minWidth="70px">
+          <LotteryTicket src='/images/lottery/00.png' />
           <Text mr="4px" bold>
             {t('Tickets')}
           </Text>
-          <Ticket />
         </Flex>
       </Flex>
-      <BalanceInput
+      <BalanceInputLottery
         isWarning={account && (userNotEnoughCake || maxTicketPurchaseExceeded)}
         placeholder="0"
         value={ticketsToBuy}
         onUserInput={handleInputChange}
         currencyValue={
-          cakePriceBusd.gt(0) &&
-          `~${ticketsToBuy ? getFullDisplayBalance(priceTicketInCake.times(new BigNumber(ticketsToBuy))) : '0.00'} CAKE`
+          luchowPriceBusd.gt(0) &&
+          `~${ticketsToBuy ? getFullDisplayBalance(priceTicketInCake.times(new BigNumber(ticketsToBuy))) : '0.00'} LUCHOW`
         }
+        background='#db4614'
+        style={{
+          backgroundColor: '#FFD1A1',
+          margin: '0 24px',
+          borderColor: '#f7ef00',
+          boxShadow: '0px 0px 0px 1px #f7ef00, 0px 0px 0px 4px #f7ef0033',
+        }}
       />
-      <Flex alignItems="center" justifyContent="flex-end" mt="4px" mb="12px">
+      <Flex alignItems="center" justifyContent="flex-end" mt="4px" mb="12px" style={{ padding: '0 24px', background: '#db4614' }}>
         <Flex justifyContent="flex-end" flexDirection="column">
           {account && (userNotEnoughCake || maxTicketPurchaseExceeded) && (
-            <Text fontSize="12px" color="failure">
+            <Text fontSize="12px" color="orange">
               {getErrorMessage()}
             </Text>
           )}
           {account && (
             <Flex justifyContent="flex-end">
-              <Text fontSize="12px" color="textSubtle" mr="4px">
-                CAKE {t('Balance')}:
+              <Text fontSize="12px" color="text" mr="4px">
+                LUCHOW {t('Balance')}:
               </Text>
               {hasFetchedBalance ? (
-                <Text fontSize="12px" color="textSubtle">
+                <Text fontSize="12px" color="text">
                   {userCakeDisplayBalance}
                 </Text>
               ) : (
@@ -379,37 +393,37 @@ const BuyTicketsModal: React.FC<BuyTicketsModalProps> = ({ onDismiss }) => {
           )}
         </ShortcutButtonsWrapper>
       )}
-      <Flex flexDirection="column">
+      <Flex flexDirection="column" style={{ padding: '0 24px', background: '#db4614' }}>
         <Flex mb="8px" justifyContent="space-between">
-          <Text color="textSubtle" fontSize="14px">
-            {t('Cost')} (CAKE)
+          <Text color="text" fontSize="14px">
+            {t('Cost')} (LUCHOW)
           </Text>
-          <Text color="textSubtle" fontSize="14px">
-            {priceTicketInCake && getFullDisplayBalance(priceTicketInCake.times(ticketsToBuy || 0))} CAKE
+          <Text color="text" fontSize="14px">
+            {priceTicketInCake && getFullDisplayBalance(priceTicketInCake.times(ticketsToBuy || 0))} LUCHOW
           </Text>
         </Flex>
         <Flex mb="8px" justifyContent="space-between">
           <Flex>
-            <Text display="inline" bold fontSize="14px" mr="4px">
+            <Text display="inline" bold fontSize="14px" mr="4px" color='#f7ef00'>
               {discountValue && totalCost ? percentageDiscount() : 0}%
             </Text>
-            <Text display="inline" color="textSubtle" fontSize="14px">
+            <Text display="inline" color="text" fontSize="14px">
               {t('Bulk discount')}
             </Text>
             <Flex alignItems="center" justifyContent="center" ref={targetRef}>
-              <HelpIcon ml="4px" width="14px" height="14px" color="textSubtle" />
+              <HelpIcon ml="4px" width="14px" height="14px" color="text" />
             </Flex>
           </Flex>
-          <Text fontSize="14px" color="textSubtle">
-            ~{discountValue} CAKE
+          <Text fontSize="14px" color="text">
+            ~{discountValue} LUCHOW
           </Text>
         </Flex>
-        <Flex borderTop={`1px solid ${theme.colors.cardBorder}`} pt="8px" mb="24px" justifyContent="space-between">
-          <Text color="textSubtle" fontSize="16px">
+        <Flex borderTop={`2px solid ${theme.colors.text}`} pt="8px" mb="24px" justifyContent="space-between">
+          <Text color="text" fontSize="16px">
             {t('You pay')}
           </Text>
           <Text fontSize="16px" bold>
-            ~{totalCost} CAKE
+            ~{totalCost} LUCHOW
           </Text>
         </Flex>
 
@@ -429,6 +443,7 @@ const BuyTicketsModal: React.FC<BuyTicketsModalProps> = ({ onDismiss }) => {
             {isApproved && (
               <Button
                 variant="secondary"
+                style={{background: 'linear-gradient(rgb(247,239,0) 0%,rgb(255,130,5) 100%)'}}
                 mt="8px"
                 endIcon={
                   <ArrowForwardIcon
@@ -450,13 +465,15 @@ const BuyTicketsModal: React.FC<BuyTicketsModalProps> = ({ onDismiss }) => {
         ) : (
           <ConnectWalletButton />
         )}
-
-        <Text mt="24px" fontSize="12px" color="textSubtle">
+      </Flex>
+      <div style={{background: '#f65d1c', padding: '12px 24px', marginTop: 12}}>
+        <Text fontSize="14px" color="text">
           {t(
             '"Buy Instantly" chooses random numbers, with no duplicates among your tickets. Prices are set before each round starts, equal to $5 at that time. Purchases are final.',
           )}
         </Text>
-      </Flex>
+      </div>
+
     </StyledModal>
   )
 }
