@@ -28,7 +28,7 @@ const BuyTicketsButton: React.FC<BuyTicketsButtonProps> = ({ disabled, ...props 
   }
 
   return (
-    <Button {...props} disabled={disabled} onClick={onPresentBuyTicketsModal}>
+    <Button {...props} scale='sm' disabled={disabled} onClick={onPresentBuyTicketsModal} style={{background: 'linear-gradient(180deg, #f7ef00 0%, #ff8205 100%)', color: '#A83514'}}>
       {getBuyButtonText()}
     </Button>
   )
