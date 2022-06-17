@@ -3,7 +3,7 @@ import styled, { keyframes } from 'styled-components'
 import { Box, Flex, Heading, Skeleton } from '@pancakeswap/uikit'
 import { LotteryStatus } from 'config/constants/types'
 import { useTranslation } from 'contexts/Localization'
-import { usePriceCakeBusd } from 'state/farms/hooks'
+import { usePriceLuchowBusd } from 'state/farms/hooks'
 import { useLottery } from 'state/lottery/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
 import Balance from 'components/Balance'
@@ -71,7 +71,8 @@ const mainTicketAnimation = keyframes`
 `
 
 const TicketContainer = styled(Flex)`
-  animation: ${mainTicketAnimation} 3s ease-in-out infinite;
+  // animation: ${mainTicketAnimation} 3s ease-in-out infinite;
+  padding: 0;
 `
 
 const PrizeTotalBalance = styled(Balance)`
@@ -80,39 +81,32 @@ const PrizeTotalBalance = styled(Balance)`
   -webkit-text-fill-color: transparent;
 `
 
-const StyledBuyTicketButton = styled(BuyTicketsButton)<{ disabled: boolean }>`
+const StyledBuyTicketButton = styled(BuyTicketsButton) <{ disabled: boolean }>`
   background: ${({ theme, disabled }) =>
-    disabled ? theme.colors.disabled : 'linear-gradient(180deg, #7645d9 0%, #452a7a 100%)'};
-  width: 200px;
+    disabled ? theme.colors.disabled : 'linear-gradient(180deg, #f7ef00 0%, #ff8205 100%)'};
+  width: 160px;
   ${({ theme }) => theme.mediaQueries.xs} {
-    width: 240px;
-  }
+    width: 180px;
+  };
+  box-shadow: 2px 4px #7e6969;
 `
-
 const ButtonWrapper = styled.div`
   z-index: 1;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) rotate(-4deg);
+  transform: translate(-50%, -50%) rotate(-0deg);
 `
-
-const TicketSvgWrapper = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  transform: rotate(-4deg);
-`
-
 const Decorations = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
-  background: url(/images/decorations/bg-star.svg);
+  background: url(/images/lottery/back01.png);
   background-repeat: no-repeat;
   background-position: center 0;
+  background-size: cover;
+  z-index: -1;
 `
-
 const StarsDecorations = styled(Box)`
   position: absolute;
   width: 100%;
@@ -141,73 +135,89 @@ const StarsDecorations = styled(Box)`
   & :nth-child(5) {
     animation: ${floatingTicketRight} 6s ease-in-out infinite;
   }
+  & :nth-child(6) {
+    animation: ${floatingTicketLeft} 6s ease-in-out infinite;
+    animation-delay: 0.4s;
+  }
 
   ${({ theme }) => theme.mediaQueries.sm} {
     & :nth-child(1) {
-      left: 3%;
-      top: 42%;
+      left: 15%;
+      top: 20%;
     }
     & :nth-child(2) {
-      left: 9%;
-      top: 23%;
+      left: 16%;
+      top: 30%;
     }
     & :nth-child(3) {
-      right: 2%;
-      top: 24%;
+      right: 17%;
+      top: 19%;
     }
     & :nth-child(4) {
-      left: 8%;
-      top: 67%;
+      left: 15%;
+      top: 45%;
     }
     & :nth-child(5) {
-      right: 8%;
-      top: 67%;
+      right: 17%;
+      top: 42%;
+    }
+    & :nth-child(6) {
+      right: 15%;
+      top: 31%;
     }
   }
 
   ${({ theme }) => theme.mediaQueries.md} {
     & :nth-child(1) {
-      left: 10%;
-      top: 42%;
+      left: 29%;
+      top: 20%;
     }
     & :nth-child(2) {
-      left: 17%;
-      top: 23%;
+      left: 30%;
+      top: 30%;
     }
     & :nth-child(3) {
-      right: 10%;
-      top: 24%;
+      right: 31%;
+      top: 19%;
     }
     & :nth-child(4) {
-      left: 17%;
-      top: 67%;
+      left: 29%;
+      top: 45%;
     }
     & :nth-child(5) {
-      right: 17%;
-      top: 67%;
+      right: 31%;
+      top: 42%;
+    }
+    & :nth-child(6) {
+      right: 29%;
+      top: 31%;
     }
   }
 
   ${({ theme }) => theme.mediaQueries.xl} {
     & :nth-child(1) {
-      left: 19%;
-      top: 42%;
+      left: 34%;
+      top: 20%;
     }
     & :nth-child(2) {
-      left: 25%;
-      top: 23%;
+      left: 35%;
+      top: 30%;
     }
     & :nth-child(3) {
-      right: 19%;
-      top: 24%;
+      right: 36%;
+      top: 19%;
     }
     & :nth-child(4) {
-      left: 24%;
-      top: 67%;
+      left: 34%;
+      top: 45%;
     }
     & :nth-child(5) {
-      right: 24%;
-      top: 67%;
+      right: 36%;
+      top: 42%;
+    }
+    & :nth-child(6) {
+      right: 34%;
+      top: 31%;
     }
   }
 `
@@ -219,7 +229,7 @@ const Hero = () => {
     isTransitioning,
   } = useLottery()
 
-  const cakePriceBusd = usePriceCakeBusd()
+  const cakePriceBusd = usePriceLuchowBusd()
   const prizeInBusd = amountCollectedInCake.times(cakePriceBusd)
   const prizeTotal = getBalanceNumber(prizeInBusd)
   const ticketBuyIsDisabled = status !== LotteryStatus.OPEN || isTransitioning
@@ -228,19 +238,22 @@ const Hero = () => {
     if (status === LotteryStatus.OPEN) {
       return (
         <>
+          <Heading mb="0px" scale="lg" color="#ffffff" style={{ textTransform: 'uppercase' }}>
+            {t('luchow lottery')}
+          </Heading>
           {prizeInBusd.isNaN() ? (
             <Skeleton my="7px" height={60} width={190} />
           ) : (
-            <PrizeTotalBalance fontSize="64px" bold prefix="$" value={prizeTotal} mb="8px" decimals={0} />
+            <PrizeTotalBalance fontSize="64px" bold prefix="$" value={prizeTotal} mb="0px" decimals={2} />
           )}
-          <Heading mb="32px" scale="lg" color="#ffffff">
+          <Heading mb="0px" scale="md" color="#ffffff" style={{ textTransform: 'uppercase' }}>
             {t('in prizes!')}
           </Heading>
         </>
       )
     }
     return (
-      <Heading mb="24px" scale="xl" color="#ffffff">
+      <Heading mb="0px" scale="xl" color="#ffffff">
         {t('Tickets on sale soon')}
       </Heading>
     )
@@ -250,16 +263,17 @@ const Hero = () => {
     <Flex flexDirection="column" alignItems="center" justifyContent="center">
       <Decorations />
       <StarsDecorations display={['none', 'none', 'block']}>
-        <img src="/images/lottery/star-big.png" width="124px" height="109px" alt="" />
-        <img src="/images/lottery/star-small.png" width="70px" height="62px" alt="" />
-        <img src="/images/lottery/three-stars.png" width="130px" height="144px" alt="" />
-        <img src="/images/lottery/ticket-l.png" width="123px" height="83px" alt="" />
-        <img src="/images/lottery/ticket-r.png" width="121px" height="72px" alt="" />
+        <img src="/images/lottery/04.png" width="30px" alt="" />
+        <img src="/images/lottery/03.png" width="40px" alt="" />
+        <img src="/images/lottery/01.png" width="50px" alt="" />
+        <img src="/images/lottery/02.png" width="50px" alt="" />
+        <img src="/images/lottery/02.png" width="35px" alt="" />
+        <img src="/images/lottery/04.png" width="30px" alt="" />
       </StarsDecorations>
-      <Heading mb="8px" scale="md" color="#ffffff" id="lottery-hero-title">
-        {t('The PancakeSwap Lottery')}
-      </Heading>
       {getHeroHeading()}
+      <div>
+        <img src='/images/lottery/00.png' alt='Buy Ticket' style={{ height: 120 }} />
+      </div>
       <TicketContainer
         position="relative"
         width={['240px', '288px']}
@@ -270,9 +284,9 @@ const Hero = () => {
         <ButtonWrapper>
           <StyledBuyTicketButton disabled={ticketBuyIsDisabled} />
         </ButtonWrapper>
-        <TicketSvgWrapper>
+        {/* <TicketSvgWrapper>
           <TicketPurchaseCard width="100%" />
-        </TicketSvgWrapper>
+        </TicketSvgWrapper> */}
       </TicketContainer>
     </Flex>
   )
