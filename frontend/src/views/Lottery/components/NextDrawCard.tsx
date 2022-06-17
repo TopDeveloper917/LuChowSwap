@@ -17,7 +17,7 @@ import {
 import { useWeb3React } from '@web3-react/core'
 import { LotteryStatus } from 'config/constants/types'
 import { useTranslation } from 'contexts/Localization'
-import { usePriceCakeBusd } from 'state/farms/hooks'
+import { usePriceLuchowBusd } from 'state/farms/hooks'
 import { useLottery } from 'state/lottery/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
 import Balance from 'components/Balance'
@@ -35,7 +35,6 @@ const Grid = styled.div`
     grid-template-columns: auto 1fr;
   }
 `
-
 const StyledCard = styled(Card)`
   width: 100%;
 
@@ -47,12 +46,11 @@ const StyledCard = styled(Card)`
     width: 756px;
   }
 `
-
 const NextDrawWrapper = styled.div`
-  background: ${({ theme }) => theme.colors.background};
+  // background: ${({ theme }) => theme.colors.background};
+  background: #db4614;
   padding: 24px;
 `
-
 const NextDrawCard = () => {
   const {
     t,
@@ -66,7 +64,7 @@ const NextDrawCard = () => {
   const [isExpanded, setIsExpanded] = useState(false)
   const ticketBuyIsDisabled = status !== LotteryStatus.OPEN || isTransitioning
 
-  const cakePriceBusd = usePriceCakeBusd()
+  const cakePriceBusd = usePriceLuchowBusd()
   const prizeInBusd = amountCollectedInCake.times(cakePriceBusd)
   const endTimeMs = parseInt(endTime, 10) * 1000
   const endDate = new Date(endTimeMs)
@@ -94,7 +92,7 @@ const NextDrawCard = () => {
             bold
             prefix="~$"
             value={getBalanceNumber(prizeInBusd)}
-            decimals={0}
+            decimals={2}
           />
         )}
         {prizeInBusd.isNaN() ? (
@@ -102,9 +100,9 @@ const NextDrawCard = () => {
         ) : (
           <Balance
             fontSize="14px"
-            color="textSubtle"
+            color="#ffd800"
             textAlign={['center', null, null, 'left']}
-            unit=" CAKE"
+            unit=" LUCHOW"
             value={getBalanceNumber(amountCollectedInCake)}
             decimals={0}
           />
@@ -137,25 +135,25 @@ const NextDrawCard = () => {
   const [youHaveText, ticketsThisRoundText] = ticketRoundText.split(userTicketCount.toString())
 
   return (
-    <StyledCard>
-      <CardHeader p="16px 24px">
+    <StyledCard style={{ background: 'transparent' }} background='transparent'>
+      <CardHeader p="16px 24px" style={{ background: '#C03506' }}>
         <Flex justifyContent="space-between">
-          <Heading mr="12px">{t('Next Draw')}</Heading>
+          <Heading mr="12px" color='#ffd800'>{t('Next Draw')}</Heading>
           <Text>
             {currentLotteryId && `#${getNextDrawId()}`} {Boolean(endTime) && getNextDrawDateTime()}
           </Text>
         </Flex>
       </CardHeader>
-      <CardBody>
+      <CardBody id='card-body' style={{ background: 'rgb(246 93 28)' }}>
         <Grid>
           <Flex justifyContent={['center', null, null, 'flex-start']}>
-            <Heading>{t('Prize Pot')}</Heading>
+            <Heading color='#ffd800'>{t('Prize Pot')}</Heading>
           </Flex>
           <Flex flexDirection="column" mb="18px">
             {getPrizeBalances()}
           </Flex>
           <Box display={['none', null, null, 'flex']}>
-            <Heading>{t('Your tickets')}</Heading>
+            <Heading color='#ffd800'>{t('Your tickets')}</Heading>
           </Box>
           <Flex flexDirection={['column', null, null, 'row']} alignItems={['center', null, null, 'flex-start']}>
             {isLotteryOpen && (
@@ -194,7 +192,7 @@ const NextDrawCard = () => {
           </Flex>
         </Grid>
       </CardBody>
-      <CardFooter p="0">
+      <CardFooter p="0" style={{ background: 'rgb(246 93 28)' }}>
         {isExpanded && (
           <NextDrawWrapper>
             <RewardBrackets lotteryNodeData={currentRound} />
@@ -202,9 +200,11 @@ const NextDrawCard = () => {
         )}
         {(status === LotteryStatus.OPEN || status === LotteryStatus.CLOSE) && (
           <Flex p="8px 24px" alignItems="center" justifyContent="center">
-            <ExpandableLabel expanded={isExpanded} onClick={() => setIsExpanded(!isExpanded)}>
-              {isExpanded ? t('Hide') : t('Details')}
-            </ExpandableLabel>
+            <div style={{background: 'linear-gradient(180deg, #f7ef00 0%, #ff8205 100%)', borderRadius: 50, height: 40, display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+              <ExpandableLabel expanded={isExpanded} onClick={() => setIsExpanded(!isExpanded)} >
+                {isExpanded ? t('Hide') : t('Details')}
+              </ExpandableLabel>
+            </div>
           </Flex>
         )}
       </CardFooter>
