@@ -1,5 +1,5 @@
 import React from 'react'
-import { ButtonMenu, ButtonMenuItem } from '@pancakeswap/uikit'
+import { ButtonMenu, ButtonMenuItem, LotteryMenuItem } from '@pancakeswap/uikit'
 import { useTranslation } from 'contexts/Localization'
 
 const HistoryTabMenu = ({ setActiveIndex, activeIndex }) => {
@@ -7,8 +7,8 @@ const HistoryTabMenu = ({ setActiveIndex, activeIndex }) => {
 
   return (
     <ButtonMenu activeIndex={activeIndex} onItemClick={setActiveIndex} scale="sm" variant="subtle">
-      <ButtonMenuItem>{t('All History')}</ButtonMenuItem>
-      <ButtonMenuItem>{t('Your History')}</ButtonMenuItem>
+      <LotteryMenuItem activeBackground='linear-gradient(180deg, #f7ef00 0%, #ff8205 100%)'>{t('All History')}</LotteryMenuItem>
+      <LotteryMenuItem activeBackground='linear-gradient(180deg, #f7ef00 0%, #ff8205 100%)'>{t('Your History')}</LotteryMenuItem>
     </ButtonMenu>
   )
 }
