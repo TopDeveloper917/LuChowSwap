@@ -21,7 +21,7 @@ const Grid = styled(Box)`
 
 const StyledSmallDotIcon = styled(SmallDotIcon)`
   path {
-    fill: ${({ theme }) => theme.colors.textDisabled};
+    fill: ${({ theme }) => theme.colors.text};
   }
 `
 
@@ -41,7 +41,7 @@ const FinishedRoundRow: React.FC<FinishedRoundRowProps> = ({
   return (
     <Grid onClick={() => onClick(roundId)}>
       <Flex alignItems="center">
-        <Text fontSize="16px" color="textSubtle">
+        <Text fontSize="16px" color="text">
           {roundId}
         </Text>
       </Flex>
@@ -54,7 +54,7 @@ const FinishedRoundRow: React.FC<FinishedRoundRowProps> = ({
         <Text fontSize="12px" mr={['0', null, '6px']}>
           {endTimeAsDate.toLocaleDateString(locale, dateOptions)}
         </Text>
-        <Text fontSize="12px" color="textSubtle">
+        <Text fontSize="12px" color="text">
           {endTimeAsDate.toLocaleTimeString(undefined, timeOptions)}
         </Text>
       </Flex>
@@ -63,7 +63,7 @@ const FinishedRoundRow: React.FC<FinishedRoundRowProps> = ({
         {hasWon ? <PrizeIcon color="warning" /> : <StyledSmallDotIcon />}
       </Flex>
       <Flex alignItems="center" justifyContent="center">
-        <ChevronRightIcon color="primary" />
+        <ChevronRightIcon color="text" />
       </Flex>
     </Grid>
   )
