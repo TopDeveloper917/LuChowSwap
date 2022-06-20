@@ -16,7 +16,7 @@ interface WinningNumbersProps extends FlexProps {
 const WinningNumbers: React.FC<WinningNumbersProps> = ({
   number,
   size = '32px',
-  fontSize = '16px',
+  fontSize = '24px',
   rotateText,
   ...containerProps
 }) => {
