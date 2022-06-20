@@ -9,8 +9,10 @@ import PreviousRoundTicketsInner from './PreviousRoundTicketsInner'
 import CurrentRoundTicketsInner from './CurrentRoundTicketsInner'
 
 const StyledModal = styled(Modal)`
-  min-width: 280px;
+  min-width: 240px;
   max-width: 320px;
+  border-color: #f65d1c;
+  background: #db4614;
 `
 
 interface ViewTicketsModalProps {
@@ -29,7 +31,7 @@ const ViewTicketsModal: React.FC<ViewTicketsModalProps> = ({ onDismiss, roundId,
     <StyledModal
       title={`${t('Round')} ${roundId}`}
       onDismiss={onDismiss}
-      headerBackground={theme.colors.gradients.cardHeader}
+      headerBackground='#f65d1c'
     >
       {isPreviousRound ? <PreviousRoundTicketsInner roundId={roundId} /> : <CurrentRoundTicketsInner />}
     </StyledModal>
