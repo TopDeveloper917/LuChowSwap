@@ -31,18 +31,21 @@ const TopBox = styled(Flex)`
   flex-direction: column;
   margin: -24px;
   padding: 24px;
-  background-color: ${({ theme }) => theme.colors.dropdown};
-  border-bottom: 1px solid ${({ theme }) => theme.colors.cardBorder};
+  background-color: rgb(246, 93, 28);
+  border-bottom: 1px solid #ffd800;
+  margin-top: -50px;
 `
-
 const ScrollBox = styled(Box)`
   margin-right: -20px;
   padding-right: 24px;
-  max-height: 300px;
-  overflow-y: scroll;
+  // max-height: 300px;
+  // overflow-y: scroll;
   margin-top: 24px;
 `
-
+const LotteryTicket1 = styled.img`
+  width: 40px;
+  margin-right: 10px;
+`
 const TicketSkeleton = () => {
   return (
     <>
@@ -145,7 +148,7 @@ const PreviousRoundTicketsInner: React.FC<{ roundId: string }> = ({ roundId }) =
   const getFooter = () => {
     if (userWinningTickets?.ticketsWithUnclaimedRewards?.length > 0) {
       return (
-        <Button onClick={onPresentClaimModal} mt="24px" width="100%">
+        <Button onClick={onPresentClaimModal} mt="24px" width="100%" style={{background: 'linear-gradient(180deg,#f7ef00 0%,#ff8205 100%)'}}>
           {t('Collect Prizes')}
         </Button>
       )
@@ -182,7 +185,7 @@ const PreviousRoundTicketsInner: React.FC<{ roundId: string }> = ({ roundId }) =
         </Text>
         <Flex mb="8px" justifyContent="space-between">
           <Flex>
-            <Ticket width="24px" height="24px" mr="8px" />
+            <LotteryTicket1 src='/images/lottery/00.png' />
             <Text bold color="text">
               {t('Total tickets')}:
             </Text>
