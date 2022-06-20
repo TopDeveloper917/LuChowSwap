@@ -37,14 +37,21 @@ const Grid = styled.div`
     grid-template-columns: auto 1fr;
   }
 `
-
 const StyledCardRibbon = styled(CardRibbon)`
   right: -20px;
   top: -20px;
+  background: linear-gradient(180deg, #f7ef00 0%, #ff8205 100%);
+  color: #a83514;
 
   ${({ theme }) => theme.mediaQueries.xs} {
     right: -10px;
     top: -10px;
+  }
+  &: after {
+    background: linear-gradient(180deg, #f7ef00 0%, #ff8205 100%);
+  }
+  &: before {
+    background: linear-gradient(180deg, #f7ef00 0%, #ff8205 100%);
   }
 `
 
@@ -77,9 +84,8 @@ const PreviousRoundCardBody: React.FC<{ lotteryNodeData: LotteryRound; lotteryId
       ? t('You had %amount% tickets this round', { amount: totalTicketNumber })
       : t('You had %amount% ticket this round', { amount: totalTicketNumber })
   const [youHadText, ticketsThisRoundText] = ticketRoundText.split(totalTicketNumber.toString())
-
   return (
-    <StyledCardBody>
+    <StyledCardBody style={{ background: '#f65d1c' }}>
       {isLatestRound && <StyledCardRibbon text={t('Latest')} />}
       <Grid>
         <Flex justifyContent={['center', null, null, 'flex-start']}>
@@ -90,7 +96,7 @@ const PreviousRoundCardBody: React.FC<{ lotteryNodeData: LotteryRound; lotteryId
             lotteryNodeData ? (
               <WinningNumbers
                 rotateText={isLargerScreen || false}
-                number={lotteryNodeData?.finalNumber.toString()}
+                number={lotteryNodeData?.finalNumber?.toString()}
                 mr={[null, null, null, '32px']}
                 size="100%"
                 fontSize={isLargerScreen ? '42px' : '16px'}
@@ -135,6 +141,7 @@ const PreviousRoundCardBody: React.FC<{ lotteryNodeData: LotteryRound; lotteryId
                 p="0"
                 variant="text"
                 scale="sm"
+                style={{color: '#ffd800'}}
               >
                 {t('View your tickets')}
               </Button>
