@@ -29,7 +29,6 @@ const AutoEarningsCell: React.FC<AutoEarningsCellProps> = ({ pool, account, user
   const { t } = useTranslation()
   const { isMobile } = useMatchBreakpoints()
   const { earningTokenPrice } = pool
-
   const {
     userData: { cakeAtLastUserAction, userShares, lastUserActionTime },
     pricePerFullShare,
@@ -60,7 +59,6 @@ const AutoEarningsCell: React.FC<AutoEarningsCellProps> = ({ pool, account, user
     </>,
     { placement: 'bottom' },
   )
-
   return (
     <StyledCell role="cell">
       <CellContent>
