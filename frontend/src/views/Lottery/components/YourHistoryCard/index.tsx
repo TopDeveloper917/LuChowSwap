@@ -20,7 +20,7 @@ import { fetchLottery } from 'state/lottery/helpers'
 import { LotteryRound } from 'state/types'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import FinishedRoundTable from './FinishedRoundTable'
-import { WhiteBunny } from '../../svgs'
+// import { WhiteBunny } from '../../svgs'
 import BuyTicketsButton from '../BuyTicketsButton'
 import PreviousRoundCardBody from '../PreviousRoundCard/Body'
 import { processLotteryResponse, getDrawnDate } from '../../helpers'
@@ -113,7 +113,7 @@ const YourHistoryCard: React.FC<YourHistoryCardProps> = ({ handleShowMoreClick, 
 
     if (!account) {
       return (
-        <StyledCardBody>
+        <StyledCardBody style={{ background: '#f65d1c' }}>
           <Text textAlign="center" color="textSubtle" mb="16px">
             {t('Connect your wallet to check your history')}
           </Text>
@@ -123,12 +123,15 @@ const YourHistoryCard: React.FC<YourHistoryCardProps> = ({ handleShowMoreClick, 
     }
     if (claimableRounds.length === 0) {
       return (
-        <StyledCardBody>
+        <StyledCardBody style={{ background: '#f65d1c' }}>
           <Box maxWidth="280px">
-            <Flex alignItems="center" justifyContent="center" mb="16px">
-              <WhiteBunny height="24px" mr="8px" /> <Text textAlign="left">{t('No lottery history found')}</Text>
+            <Flex alignItems="center" justifyContent="center" mb='16px'>
+              <img src='/images/lottery/00.png' alt='YourHistory' style={{width: 100}} />
             </Flex>
-            <Text textAlign="center" color="textSubtle" mb="16px">
+            <Flex alignItems="center" justifyContent="center" mb="16px">
+              <Text textAlign="left">{t('No lottery history found')}</Text>
+            </Flex>
+            <Text textAlign="center" color="text" mb="16px">
               {t('Buy tickets for the next round!')}
             </Text>
             <BuyTicketsButton disabled={ticketBuyIsDisabled} width="100%" />
@@ -150,9 +153,9 @@ const YourHistoryCard: React.FC<YourHistoryCardProps> = ({ handleShowMoreClick, 
       return <PreviousRoundCardFooter lotteryNodeData={selectedLotteryNodeData} lotteryId={selectedLotteryId} />
     }
     return (
-      <CardFooter>
+      <CardFooter style={{ background: '#db4614' }}>
         <Flex flexDirection="column" justifyContent="center" alignItems="center">
-          <Text fontSize="12px" color="textSubtle">
+          <Text fontSize="12px" color="text">
             {t('Only showing data for Lottery V2')}
           </Text>
         </Flex>
@@ -161,8 +164,8 @@ const YourHistoryCard: React.FC<YourHistoryCardProps> = ({ handleShowMoreClick, 
   }
 
   return (
-    <StyledCard>
-      <CardHeader>{getHeader()}</CardHeader>
+    <StyledCard style={{ background: 'transparent' }} background='transparent'>
+      <CardHeader style={{ background: '#c03506' }}>{getHeader()}</CardHeader>
       {getBody()}
       {getFooter()}
     </StyledCard>
