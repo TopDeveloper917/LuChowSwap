@@ -6,7 +6,7 @@ import { getBalanceNumber, getFullDisplayBalance, getDecimalAmount } from 'utils
 export const convertSharesToCake = (
   shares: BigNumber,
   cakePerFullShare: BigNumber,
-  decimals = 18,
+  decimals = 9,
   decimalsToRound = 3,
 ) => {
   const sharePriceNumber = getBalanceNumber(cakePerFullShare, decimals)
@@ -20,7 +20,7 @@ export const convertSharesToCake = (
 export const convertCakeToShares = (
   cake: BigNumber,
   cakePerFullShare: BigNumber,
-  decimals = 18,
+  decimals = 9,
   decimalsToRound = 3,
 ) => {
   const sharePriceNumber = getBalanceNumber(cakePerFullShare, decimals)
@@ -59,7 +59,6 @@ export const getCakeVaultEarnings = (
   const { cakeAsBigNumber } = convertSharesToCake(userShares, pricePerFullShare)
   const autoCakeProfit = cakeAsBigNumber.minus(cakeAtLastUserAction)
   const autoCakeToDisplay = autoCakeProfit.gte(0) ? getBalanceNumber(autoCakeProfit, 9) : 0
-
   const autoUsdProfit = autoCakeProfit.times(earningTokenPrice)
   const autoUsdToDisplay = autoUsdProfit.gte(0) ? getBalanceNumber(autoUsdProfit, 9) : 0
   return { hasAutoEarnings, autoCakeToDisplay, autoUsdToDisplay }
