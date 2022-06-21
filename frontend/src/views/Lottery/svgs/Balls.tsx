@@ -241,16 +241,60 @@ export const YellowBall: React.FC<SvgProps> = (props) => {
     </Svg>
   )
 }
-
+// new ball squares
+export const PinkSquare = () => {
+  return (
+    <div>
+      <img src='/images/lottery/num2.png' alt='PinkSquare' style={{width: 85}} />
+    </div>
+  )
+}
+export const LilacSquare = () => {
+  return (
+    <div>
+      <img src='/images/lottery/num5.png' alt='LilacSquare' style={{width: 85}} />
+    </div>
+  )
+}
+export const TealSquare = () => {
+  return (
+    <div>
+      <img src='/images/lottery/num1.png' alt='TealSquare' style={{width: 85}} />
+    </div>
+  )
+}
+export const AquaSquare = () => {
+  return (
+    <div>
+      <img src='/images/lottery/num3.png' alt='AquaSquare' style={{width: 85}} />
+    </div>
+  )
+}
+export const GreenSquare = () => {
+  return (
+    <div>
+      <img src='/images/lottery/num4.png' alt='GreenSquare' style={{width: 85}} />
+    </div>
+  )
+}
+export const YellowSquare = () => {
+  return (
+    <div>
+      <img src='/images/lottery/num0.png' alt='YellowSquare' style={{width: 85}} />
+    </div>
+  )
+}
 export const BallTextWrapper = styled.div`
   top: 45%;
-  left: 50%;
+  left: 40%;
   transform: translate(-50%, -50%);
   position: absolute;
 `
 
-export const BallText = styled(Text)<{ rotationTransform?: number }>`
-  color: #000000;
+export const BallText = styled(Text)<{ rotationTransform?: number, fontSize?: string }>`
+  color: #fff;
+  // font-weight: bold;
+  font-size: ${({ fontSize }) => fontSize};
   text-shadow: -0.75px -0.75px 0 white, 0.75px -0.75px 0 white, -0.75px 0.75px 0 white, 0.75px 0.75px 0 white;
   transform: rotate(${({ rotationTransform }) => rotationTransform || 0}deg);
 `
@@ -266,21 +310,23 @@ interface BallWithNumberProps {
 }
 
 const ballsMap = {
-  pink: PinkBall,
-  lilac: LilacBall,
-  teal: TealBall,
-  aqua: AquaBall,
-  green: GreenBall,
-  yellow: YellowBall,
+  pink: PinkSquare,
+  lilac: LilacSquare,
+  teal: TealSquare,
+  aqua: AquaSquare,
+  green: GreenSquare,
+  yellow: YellowSquare,
 }
 
 export const BallWithNumber: React.FC<BallWithNumberProps> = ({ color, number, size, fontSize, rotationTransform }) => {
   const BallComponent = ballsMap[color]
   return (
     <Flex alignItems="center" justifyContent="center" position="relative" mx="2px">
-      <BallComponent width={size ?? '32px'} height={size ?? '32px'} />
+      {/* <BallComponent width={size ?? '32px'} height={size ?? '32px'} /> */}
+      <BallComponent />
       <BallTextWrapper>
-        <BallText rotationTransform={rotationTransform} bold fontSize={fontSize ?? '16px'}>
+        <BallText rotationTransform={0} fontSize={fontSize ?? '38px'}>
+        {/* <BallText rotationTransform={0}> */}
           {number}
         </BallText>
       </BallTextWrapper>
