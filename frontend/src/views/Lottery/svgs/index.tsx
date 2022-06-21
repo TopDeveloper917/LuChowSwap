@@ -11,5 +11,5 @@ export {
   GreenBall,
   YellowBall,
 } from './Balls'
-export { MatchExampleA, MatchExampleB } from './MatchExamples'
+export { MatchExampleA, MatchExampleA1, MatchExampleB, MatchExampleB1 } from './MatchExamples'
 export { default as PoolAllocationChart } from './PoolAllocationChart'
