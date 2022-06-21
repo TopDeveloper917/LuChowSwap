@@ -1,0 +1,19 @@
+{
+  "name": "lotteryscheduler",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "kroim",
+  "license": "ISC",
+  "dependencies": {
+    "ethers": "^5.6.4",
+    "moment": "^2.29.3",
+    "node-cron": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13"
+  }
+}
