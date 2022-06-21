@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Flex, Link, Skeleton, Text, TimerIcon } from '@pancakeswap/uikit'
+import { Flex, Link, Text, TimerIcon } from '@pancakeswap/uikit'
 import { getBscScanLink } from 'utils'
 import { DeserializedPool } from 'state/types'
 import { useBlock } from 'state/block/hooks'
@@ -60,7 +60,8 @@ const EndsInCell: React.FC<FinishCellProps> = ({ pool }) => {
         <Text fontSize="12px" color="textSubtle" textAlign="left">
           {hasPoolStarted || !shouldShowBlockCountdown ? t('Ends in') : t('Starts in')}
         </Text>
-        {showLoading ? <Skeleton width="80px" height="16px" /> : renderBlocks}
+        {/* {showLoading ? <Skeleton width="80px" height="16px" /> : renderBlocks} */}
+        {renderBlocks}
       </CellContent>
     </StyledCell>
   )
