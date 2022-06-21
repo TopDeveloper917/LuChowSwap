@@ -40,7 +40,6 @@ import { getAprData, getCakeVaultEarnings } from './helpers'
 const CardLayout = styled(FlexLayout)`
   justify-content: center;
 `
-
 const PoolControls = styled.div`
   display: flex;
   width: 100%;
@@ -58,7 +57,6 @@ const PoolControls = styled.div`
     margin-bottom: 0;
   }
 `
-
 const FilterContainer = styled.div`
   display: flex;
   align-items: center;
@@ -70,13 +68,11 @@ const FilterContainer = styled.div`
     padding: 0;
   }
 `
-
 const LabelWrapper = styled.div`
   > ${Text} {
     font-size: 12px;
   }
 `
-
 const ControlStretch = styled(Flex)`
   > div {
     flex: 1;
@@ -256,11 +252,11 @@ const Pools: React.FC = () => {
 
   return (
     <>
-      <PageHeader>
+      <PageHeader background='linear-gradient(to top, #774E2E 20%, #A03314 100%)'>
         <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']}>
           <Flex flex="1" flexDirection="column" mr={['8px', 0]}>
             <Heading as="h1" scale="xxl" color="secondary" mb="24px">
-              {t('Luchow Pools')}
+              {t('Pools')}
             </Heading>
             <Heading scale="md" color="text">
               {t('Just stake some tokens to earn.')}
