@@ -341,7 +341,7 @@ export default function Swap({ history }: RouteComponentProps) {
   return (
     <Page removePadding={isChartExpanded} hideFooterOnDesktop={isChartExpanded}>
       <Flex width="100%" justifyContent={isChartExpanded ? "unset" : "center"} position="relative">
-        {!isMobile && false && (
+        {!isMobile && (
           <PriceChartContainer
             inputCurrencyId={inputCurrencyId}
             inputCurrency={currencies[Field.INPUT]}
