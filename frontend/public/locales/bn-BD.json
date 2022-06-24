@@ -1736,7 +1736,7 @@
   "Other collections will be coming soon. We’ll make an announcement soon about the launch of the V2 Market.": "অন্যান্য সংগ্রহ শীঘ্রই আসছে। আমরা শীঘ্রই V2 বাজার চালু করার বিষয়ে একটি ঘোষণা দেব।",
   "How can I list my NFT collection on the Market?": "আমি কিভাবে আমার NFT সংগ্রহ বাজারে তালিকাভুক্ত করতে পারি?",
   "In Phase 2 of the NFT Marketplace, collections must be whitelisted before they may be listed.": "NFT মার্কেটপ্লেসের পর্যায় 2-এ এসব সংগ্রহ তালিকাভুক্ত হওয়ার আগে অবশ্যই তা শ্বেত তালিকাভুক্ত করতে হবে।",
-  "We are now accepting applications from NFT collection owners seeking to list their collections. Please apply here: https://docs.pancakeswap.finance/contact-us/nft-market-applications": "আমরা এখন NFT সংগ্রহের মালিকদের কাছ থেকে তাদের সংগ্রহ তালিকাভুক্ত করার জন্য আবেদন গ্রহণ করছি। অনুগ্রহ করে এখানে আবেদন করুন:  https://docs.pancakeswap.finance/contact-us/nft-market-applications",
+  "We are now accepting applications from NFT collection owners seeking to list their collections. Please apply here: https://docs.app.luchowswa.com/contact-us/nft-market-applications": "আমরা এখন NFT সংগ্রহের মালিকদের কাছ থেকে তাদের সংগ্রহ তালিকাভুক্ত করার জন্য আবেদন গ্রহণ করছি। অনুগ্রহ করে এখানে আবেদন করুন:  https://docs.app.luchowswa.com/contact-us/nft-market-applications",
   "What are the fees?": "ফি কত?",
   "100% of all platform fees taken by PancakeSwap from sales are used to buy back and BURN CAKE tokens in our weekly CAKE burns.": "বিক্রয় থেকে PancakeSwap কর্তৃক গৃহীত সমস্ত প্ল্যাটফর্ম ফি'র 100% আমাদের সাপ্তাহিক CAKE ব্যয়ে কেক CAKE টোকেনের ফেরত ক্রয় এবং ব্যয় করার জন্য ব্যবহৃত হয়।",
   "Platform fees: 2% is subtracted from NFT sales on the market. Subject to change.Collection fees: Additional fees may be taken by collection creators, once those collections are live. These will not contribute to the CAKE burns.": "প্ল্যাটফর্ম ফি: বাজারে NFT বিক্রয় থেকে 2% বিয়োগ করা হয়। পরিবর্তন সাপেক্ষ। সংগ্রহ ফি: সংগ্রহ লাইভ হয়ে গেলে সংগ্রহের উদ্ভাবকরা অতিরিক্ত ফি নিতে পারে। এগুলো CAKE ব্যয়ে অবদান রাখবে না। ",
@@ -1749,5 +1749,5 @@
   "Unwrap": "উন্মুক্ত করুন",
   "Go to IFO": "Go to IFO",
   "Phishing warning: ": "Phishing warning: ",
-  "please make sure you're visiting https://pancakeswap.finance - check the URL carefully.": "please make sure you're visiting https://pancakeswap.finance - check the URL carefully."
+  "please make sure you're visiting https://app.luchowswa.com - check the URL carefully.": "please make sure you're visiting https://app.luchowswa.com - check the URL carefully."
 }
