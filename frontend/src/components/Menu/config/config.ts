@@ -104,7 +104,7 @@ const config: (t: ContextApi['t']) => ConfigMenuItemsType[] = (t) => [
       // },
       // {
       //   label: t('Docs'),
-      //   href: 'https://docs.pancakeswap.finance',
+      //   href: 'https://docs.app.luchowswa.com',
       //   type: DropdownMenuItemType.EXTERNAL_LINK,
       // },
     ],
