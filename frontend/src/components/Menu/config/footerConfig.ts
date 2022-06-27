@@ -49,7 +49,7 @@ export const footerLinks: (t: ContextApi['t']) => FooterLinkType[] = (t) => [
       },
       // {
       //   label: t('Guides'),
-      //   href: 'https://docs.pancakeswap.finance/get-started',
+      //   href: 'https://docs.app.luchowswa.com/get-started',
       // },
     ],
   },
@@ -70,11 +70,11 @@ export const footerLinks: (t: ContextApi['t']) => FooterLinkType[] = (t) => [
       // },
       // {
       //   label: t('Audits'),
-      //   href: 'https://docs.pancakeswap.finance/help/faq#is-pancakeswap-safe-has-pancakeswap-been-audited',
+      //   href: 'https://docs.app.luchowswa.com/help/faq#is-pancakeswap-safe-has-pancakeswap-been-audited',
       // },
       // {
       //   label: t('Careers'),
-      //   href: 'https://docs.pancakeswap.finance/hiring/become-a-chef',
+      //   href: 'https://docs.app.luchowswa.com/hiring/become-a-chef',
       // },
     ],
   },
