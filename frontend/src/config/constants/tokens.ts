@@ -29,7 +29,7 @@ export const mainnetTokens = {
     18,
     'CAKE',
     'PancakeSwap Token',
-    'https://pancakeswap.finance/',
+    'https://app.luchowswa.com/',
   ),
   luchow: new Token(
     MAINNET,
@@ -233,7 +233,7 @@ export const mainnetTokens = {
     18,
     'SYRUP',
     'SyrupBar Token',
-    'https://pancakeswap.finance/',
+    'https://app.luchowswa.com/',
   ),
   pha: new Token(
     MAINNET,
@@ -1831,7 +1831,7 @@ export const testnetTokens = {
     18,
     'CAKE',
     'PancakeSwap Token',
-    'https://pancakeswap.finance/',
+    'https://app.luchowswa.com/',
   ),
   busd: new Token(
     TESTNET,
@@ -1847,7 +1847,7 @@ export const testnetTokens = {
     18,
     'SYRUP',
     'SyrupBar Token',
-    'https://pancakeswap.finance/',
+    'https://app.luchowswa.com/',
   ),
   bake: new Token(
     TESTNET,
