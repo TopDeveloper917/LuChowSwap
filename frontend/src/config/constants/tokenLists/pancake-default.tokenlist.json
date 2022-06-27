@@ -7,7 +7,7 @@
     "patch": 0
   },
   "tags": {},
-  "logoURI": "https://pancakeswap.finance/logo.png",
+  "logoURI": "https://app.luchowswa.com/logo.png",
   "keywords": ["luchow", "default"],
   "tokens": [
     {
@@ -16,7 +16,7 @@
       "address": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
       "chainId": 56,
       "decimals": 18,
-      "logoURI": "https://pancakeswap.finance/images/tokens/0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c.png"
+      "logoURI": "https://app.luchowswa.com/images/tokens/0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c.png"
     },
     {
       "name": "BUSD Token",
@@ -24,7 +24,7 @@
       "address": "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56",
       "chainId": 56,
       "decimals": 18,
-      "logoURI": "https://pancakeswap.finance/images/tokens/0xe9e7cea3dedca5984780bafc599bd69add087d56.png"
+      "logoURI": "https://app.luchowswa.com/images/tokens/0xe9e7cea3dedca5984780bafc599bd69add087d56.png"
     },
     {
       "name": "USDC Token",
@@ -32,7 +32,7 @@
       "address": "0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d",
       "chainId": 56,
       "decimals": 18,
-      "logoURI": "https://pancakeswap.finance/images/tokens/0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d.png"
+      "logoURI": "https://app.luchowswa.com/images/tokens/0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d.png"
     },
     {
       "name": "Ethereum Token",
@@ -40,7 +40,7 @@
       "address": "0x2170Ed0880ac9A755fd29B2688956BD959F933F8",
       "chainId": 56,
       "decimals": 18,
-      "logoURI": "https://pancakeswap.finance/images/tokens/0x2170ed0880ac9a755fd29b2688956bd959f933f8.png"
+      "logoURI": "https://app.luchowswa.com/images/tokens/0x2170ed0880ac9a755fd29b2688956bd959f933f8.png"
     },
     {
       "name": "BTCB Token",
@@ -48,7 +48,7 @@
       "address": "0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c",
       "chainId": 56,
       "decimals": 18,
-      "logoURI": "https://pancakeswap.finance/images/tokens/0x7130d2a12b9bcbfae4f2634d864a1ee1ce3ead9c.png"
+      "logoURI": "https://app.luchowswa.com/images/tokens/0x7130d2a12b9bcbfae4f2634d864a1ee1ce3ead9c.png"
     },
     {
       "name": "Tether USD",
@@ -64,7 +64,7 @@
       "address": "0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82",
       "chainId": 56,
       "decimals": 18,
-      "logoURI": "https://pancakeswap.finance/images/tokens/0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82.png"
+      "logoURI": "https://app.luchowswa.com/images/tokens/0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82.png"
     },
     {
       "name": "Venus",
@@ -80,7 +80,7 @@
       "address": "0x4BD17003473389A42DAF6a0a729f6Fdb328BbBd7",
       "chainId": 56,
       "decimals": 18,
-      "logoURI": "https://pancakeswap.finance/images/tokens/0x4bd17003473389a42daf6a0a729f6fdb328bbbd7.png"
+      "logoURI": "https://app.luchowswa.com/images/tokens/0x4bd17003473389a42daf6a0a729f6fdb328bbbd7.png"
     },
     {
       "name": "Pancake Bunny",
@@ -88,7 +88,7 @@
       "address": "0xC9849E6fdB743d08fAeE3E34dd2D1bc69EA11a51",
       "chainId": 56,
       "decimals": 18,
-      "logoURI": "https://pancakeswap.finance/images/tokens/0xc9849e6fdb743d08faee3e34dd2d1bc69ea11a51.png"
+      "logoURI": "https://app.luchowswa.com/images/tokens/0xc9849e6fdb743d08faee3e34dd2d1bc69ea11a51.png"
     },
     {
       "name": "SafeMoon",
@@ -104,7 +104,7 @@
       "address": "0x8F0528cE5eF7B51152A59745bEfDD91D97091d2F",
       "chainId": 56,
       "decimals": 18,
-      "logoURI": "https://pancakeswap.finance/images/tokens/0x8f0528ce5ef7b51152a59745befdd91d97091d2f.png"
+      "logoURI": "https://app.luchowswa.com/images/tokens/0x8f0528ce5ef7b51152a59745befdd91d97091d2f.png"
     },
     {
       "name": "Belt",
@@ -112,7 +112,7 @@
       "address": "0xE0e514c71282b6f4e823703a39374Cf58dc3eA4f",
       "chainId": 56,
       "decimals": 18,
-      "logoURI": "https://pancakeswap.finance/images/tokens/0xE0e514c71282b6f4e823703a39374Cf58dc3eA4f.png"
+      "logoURI": "https://app.luchowswa.com/images/tokens/0xE0e514c71282b6f4e823703a39374Cf58dc3eA4f.png"
     },
     {
       "name": "TokoCrypto",
@@ -128,7 +128,7 @@
       "address": "0x42F6f551ae042cBe50C739158b4f0CAC0Edb9096",
       "chainId": 56,
       "decimals": 18,
-      "logoURI": "https://pancakeswap.finance/images/tokens/0x42f6f551ae042cbe50c739158b4f0cac0edb9096.png"
+      "logoURI": "https://app.luchowswa.com/images/tokens/0x42f6f551ae042cbe50c739158b4f0cac0edb9096.png"
     },
     {
       "name": "Ellipsis",
