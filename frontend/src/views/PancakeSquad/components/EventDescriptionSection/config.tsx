@@ -36,7 +36,7 @@ const eventDescriptionConfigBuilder = ({ t }: EventDescriptionType) => ({
     },
   ],
   primaryButton: {
-    to: 'https://docs.pancakeswap.finance/',
+    to: 'https://docs.app.luchowswa.com/',
     text: t('View Documentation'),
     external: true,
     isDisplayed: false,
