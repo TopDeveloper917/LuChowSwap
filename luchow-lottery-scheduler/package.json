@@ -1,0 +1,36 @@
+{
+  "name": "luchow-lottery-scheduler",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "execute:start:testnet": "npx hardhat run --network testnet scripts/start-lottery.ts",
+    "execute:start:mainnet": "npx hardhat run --network mainnet scripts/start-lottery.ts",
+    "execute:close:testnet": "npx hardhat run --network testnet scripts/close-lottery.ts",
+    "execute:close:mainnet": "npx hardhat run --network mainnet scripts/close-lottery.ts",
+    "execute:draw:testnet": "npx hardhat run --network testnet scripts/draw-lottery.ts",
+    "execute:draw:mainnet": "npx hardhat run --network mainnet scripts/draw-lottery.ts",
+    "lint": "eslint '*/**/*.{js,ts}'"
+  },
+  "dependencies": {
+    "@chainlink/contracts": "^0.2.0",
+    "@ethersproject/units": "^5.6.0",
+    "bignumber.js": "^9.0.0",
+    "moment": "^2.29.0",
+    "winston": "^3.3.0",
+    "winston-daily-rotate-file": "^4.5.0"
+  },
+  "devDependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.0.2",
+    "@types/node": "^15.12.5",
+    "@typescript-eslint/eslint-plugin": "^4.28.0",
+    "@typescript-eslint/parser": "^4.28.0",
+    "dotenv": "^10.0.0",
+    "eslint": "^7.29.0",
+    "eslint-config-prettier": "^8.3.0",
+    "ethers": "^5.4.0",
+    "hardhat": "^2.5.0",
+    "prettier": "^2.3.2",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.5"
+  }
+}
