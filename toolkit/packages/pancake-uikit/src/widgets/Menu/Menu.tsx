@@ -73,6 +73,7 @@ const Menu: React.FC<NavProps> = ({
   userMenu,
   banner,
   globalMenu,
+  chainMenu,
   isDark,
   toggleTheme,
   currentLang,
@@ -156,7 +157,7 @@ const Menu: React.FC<NavProps> = ({
                   hideLanguage
                 />
               </Box>
-              {globalMenu} {userMenu}
+              {globalMenu} {chainMenu} {userMenu}
             </Flex>
           </StyledNav>
         </Box>
