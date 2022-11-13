@@ -10,6 +10,7 @@ import { usePhishingBannerManager } from 'state/user/hooks'
 import config from './config/config'
 import UserMenu from './UserMenu'
 import GlobalSettings from './GlobalSettings'
+import { MultiChainSettings } from './GlobalSettings/MultiChainModal'
 import { getActiveMenuItem, getActiveSubMenuItem } from './utils'
 import { footerLinks } from './config/footerConfig'
 
@@ -28,6 +29,7 @@ const Menu = (props) => {
     <UikitMenu
       userMenu={<UserMenu />}
       globalMenu={<GlobalSettings />}
+      chainMenu={<MultiChainSettings />}
       banner={hideBanner && showPhishingWarningBanner && <PhishingWarningBanner />}
       isDark={isDark}
       toggleTheme={toggleTheme}
