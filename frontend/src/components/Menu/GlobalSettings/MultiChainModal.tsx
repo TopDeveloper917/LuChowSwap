@@ -56,7 +56,7 @@ export const MultiChainModal: React.FC<InjectedModalProps> = ({ onDismiss }) => 
           <img src='/images/tokens/bsc.png' alt='Network' />
           <div>{t('BSC')}</div>
         </CustomFlex>
-        <CustomFlex onClick={() => alert('Coming Soon...')}>
+        <CustomFlex onClick={() => redirectPath('https://pol.luchowswap.com/swap')}>
           <img src='/images/tokens/polygon.png' alt='Network' />
           <div>{t('Polygon')}</div>
         </CustomFlex>
