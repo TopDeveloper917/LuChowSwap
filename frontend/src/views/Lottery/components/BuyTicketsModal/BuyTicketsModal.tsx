@@ -469,7 +469,7 @@ const BuyTicketsModal: React.FC<BuyTicketsModalProps> = ({ onDismiss }) => {
       <div style={{background: '#f65d1c', padding: '12px 24px', marginTop: 12}}>
         <Text fontSize="14px" color="text">
           {t(
-            '"Buy Instantly" chooses random numbers, with no duplicates among your tickets. Prices are set before each round starts, equal to $5 at that time. Purchases are final.',
+            '"Buy Instantly" chooses random numbers, with no duplicates among your tickets. Prices are set before each round starts. Purchases are final.',
           )}
         </Text>
       </div>
